@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CoSign Help Centre</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --rose:    #f43f5e;
+      --rose-d:  #e11d48;
+      --rose-bg: #fff1f2;
+      --ink:     #0f0a0b;
+      --ink-2:   #3d2f32;
+      --ink-3:   #7c6468;
+      --line:    #f0e8e9;
+      --bg:      #fffcfc;
+      --white:   #ffffff;
+      --card:    #ffffff;
+      --emerald: #10b981;
+      --amber:   #f59e0b;
+      --blue:    #3b82f6;
+      --radius:  18px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Nav ───────────────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,252,252,0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--line);
+      padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .logo {
+      display: flex; align-items: center; gap: 10px;
+      font-family: 'Sora', sans-serif;
+      font-weight: 800; font-size: 18px; color: var(--ink);
+      text-decoration: none;
+    }
+    .logo-mark {
+      width: 32px; height: 32px; border-radius: 10px;
+      background: var(--rose); display: flex; align-items: center; justify-content: center;
+    }
+    .logo-mark svg { width: 18px; height: 18px; }
+    .nav-badge {
+      font-size: 11px; font-weight: 700; color: var(--rose);
+      background: var(--rose-bg); border-radius: 20px;
+      padding: 3px 10px; letter-spacing: 0.5px;
+    }
+    .nav-contact {
+      font-size: 13px; font-weight: 600; color: var(--ink-3);
+      text-decoration: none; padding: 8px 16px; border-radius: 20px;
+      border: 1.5px solid var(--line); transition: all 0.2s;
+    }
+    .nav-contact:hover { color: var(--rose); border-color: var(--rose); }
+
+    /* ── Hero ──────────────────────────────────────── */
+    .hero {
+      padding: 80px 24px 60px;
+      text-align: center;
+      max-width: 680px; margin: 0 auto;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 12px; font-weight: 700; letter-spacing: 1px;
+      color: var(--rose); background: var(--rose-bg);
+      padding: 5px 14px; border-radius: 20px; margin-bottom: 20px;
+      text-transform: uppercase;
+    }
+    .hero h1 {
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(32px, 6vw, 52px);
+      font-weight: 800; line-height: 1.1;
+      letter-spacing: -1.5px; color: var(--ink);
+      margin-bottom: 16px;
+    }
+    .hero h1 span { color: var(--rose); }
+    .hero p {
+      font-size: 16px; color: var(--ink-3);
+      font-weight: 400; margin-bottom: 32px; line-height: 1.7;
+    }
+
+    /* ── Search ────────────────────────────────────── */
+    .search-wrap {
+      max-width: 520px; margin: 0 auto;
+      position: relative;
+    }
+    .search-wrap svg {
+      position: absolute; left: 18px; top: 50%; transform: translateY(-50%);
+      width: 18px; height: 18px; opacity: 0.4; pointer-events: none;
+    }
+    #search {
+      width: 100%; padding: 16px 20px 16px 50px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px; font-weight: 400;
+      border: 2px solid var(--line);
+      border-radius: 50px; background: var(--white);
+      color: var(--ink); outline: none;
+      box-shadow: 0 4px 24px rgba(244,63,94,0.06);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    #search:focus {
+      border-color: var(--rose);
+      box-shadow: 0 4px 24px rgba(244,63,94,0.14);
+    }
+    #search::placeholder { color: var(--ink-3); }
+    #search-results {
+      position: absolute; top: calc(100% + 8px); left: 0; right: 0;
+      background: var(--white); border-radius: 16px;
+      border: 1.5px solid var(--line);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.10);
+      overflow: hidden; display: none; z-index: 200;
+    }
+    #search-results.show { display: block; }
+    .search-item {
+      padding: 14px 20px; cursor: pointer;
+      display: flex; align-items: center; gap: 12px;
+      transition: background 0.15s; border-bottom: 1px solid var(--line);
+      text-decoration: none; color: inherit;
+    }
+    .search-item:last-child { border-bottom: none; }
+    .search-item:hover { background: var(--rose-bg); }
+    .search-item-cat {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.5px;
+      color: var(--rose); text-transform: uppercase;
+      background: var(--rose-bg); padding: 2px 8px; border-radius: 20px;
+      white-space: nowrap;
+    }
+    .search-item-title { font-size: 14px; font-weight: 500; }
+    .search-empty { padding: 24px; text-align: center; color: var(--ink-3); font-size: 14px; }
+
+    /* ── Category grid ─────────────────────────────── */
+    .categories {
+      max-width: 1100px; margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+    .section-label {
+      font-family: 'Sora', sans-serif;
+      font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+      color: var(--ink-3); text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .cat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 16px;
+    }
+    .cat-card {
+      background: var(--card); border: 1.5px solid var(--line);
+      border-radius: var(--radius); padding: 24px;
+      text-decoration: none; color: inherit;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+      display: flex; flex-direction: column; gap: 12px;
+      cursor: pointer;
+    }
+    .cat-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(244,63,94,0.10);
+      border-color: var(--rose);
+    }
+    .cat-icon {
+      width: 44px; height: 44px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+    }
+    .cat-name {
+      font-family: 'Sora', sans-serif;
+      font-size: 16px; font-weight: 700; color: var(--ink);
+    }
+    .cat-desc { font-size: 13px; color: var(--ink-3); line-height: 1.5; }
+    .cat-count {
+      font-size: 11px; font-weight: 700; color: var(--ink-3);
+      margin-top: auto;
+    }
+    .cat-arrow { margin-left: auto; opacity: 0.3; font-size: 18px; }
+
+    /* ── Article page ──────────────────────────────── */
+    #article-view { display: none; }
+    .article-wrap {
+      max-width: 720px; margin: 0 auto;
+      padding: 40px 24px 100px;
+    }
+    .breadcrumb {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 13px; color: var(--ink-3);
+      margin-bottom: 32px;
+    }
+    .breadcrumb a {
+      color: var(--rose); text-decoration: none; font-weight: 600;
+      cursor: pointer;
+    }
+    .breadcrumb span { opacity: 0.5; }
+    .article-header { margin-bottom: 40px; }
+    .article-cat-pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.5px;
+      color: var(--rose); background: var(--rose-bg);
+      padding: 4px 12px; border-radius: 20px;
+      text-transform: uppercase; margin-bottom: 16px;
+    }
+    .article-title {
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(24px, 4vw, 36px);
+      font-weight: 800; line-height: 1.15;
+      letter-spacing: -0.8px; color: var(--ink);
+      margin-bottom: 12px;
+    }
+    .article-meta { font-size: 13px; color: var(--ink-3); }
+    .article-body { font-size: 15px; line-height: 1.8; color: var(--ink-2); }
+    .article-body h2 {
+      font-family: 'Sora', sans-serif;
+      font-size: 20px; font-weight: 700;
+      color: var(--ink); margin: 36px 0 12px;
+      letter-spacing: -0.3px;
+    }
+    .article-body h3 {
+      font-size: 16px; font-weight: 700;
+      color: var(--ink); margin: 24px 0 8px;
+    }
+    .article-body p { margin-bottom: 16px; }
+    .article-body ul, .article-body ol {
+      padding-left: 24px; margin-bottom: 16px;
+    }
+    .article-body li { margin-bottom: 8px; }
+    .article-body strong { color: var(--ink); font-weight: 600; }
+    .callout {
+      background: var(--rose-bg); border-left: 4px solid var(--rose);
+      border-radius: 0 12px 12px 0; padding: 16px 20px;
+      margin: 20px 0; font-size: 14px; color: var(--ink-2);
+    }
+    .callout.green { background: #ecfdf5; border-color: var(--emerald); }
+    .callout.amber { background: #fffbeb; border-color: var(--amber); }
+    .step {
+      display: flex; gap: 16px; margin-bottom: 20px; align-items: flex-start;
+    }
+    .step-num {
+      width: 28px; height: 28px; min-width: 28px;
+      background: var(--rose); color: white;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 800; font-family: 'Sora', sans-serif;
+      margin-top: 2px;
+    }
+    .step-content { flex: 1; }
+    .step-content strong { display: block; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
+
+    /* ── Category article list ─────────────────────── */
+    #category-view { display: none; }
+    .cat-article-list { margin-top: 24px; }
+    .cat-article-item {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 20px; background: var(--card);
+      border: 1.5px solid var(--line); border-radius: var(--radius);
+      margin-bottom: 10px; cursor: pointer; text-decoration: none; color: inherit;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .cat-article-item:hover { border-color: var(--rose); box-shadow: 0 4px 20px rgba(244,63,94,0.08); }
+    .cat-article-item-title { font-size: 15px; font-weight: 600; }
+    .cat-article-item-arrow { opacity: 0.3; font-size: 18px; }
+
+    /* ── Contact strip ─────────────────────────────── */
+    .contact-strip {
+      background: linear-gradient(135deg, var(--rose) 0%, #fb7185 100%);
+      padding: 60px 24px; text-align: center; margin-top: 60px;
+    }
+    .contact-strip h2 {
+      font-family: 'Sora', sans-serif;
+      font-size: 28px; font-weight: 800;
+      color: white; margin-bottom: 10px;
+      letter-spacing: -0.5px;
+    }
+    .contact-strip p { color: rgba(255,255,255,0.85); font-size: 15px; margin-bottom: 24px; }
+    .contact-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: white; color: var(--rose);
+      font-family: 'Sora', sans-serif;
+      font-size: 14px; font-weight: 800;
+      padding: 14px 28px; border-radius: 50px;
+      text-decoration: none; transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+    .contact-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,0.2); }
+
+    /* ── Footer ────────────────────────────────────── */
+    footer {
+      padding: 32px 24px; text-align: center;
+      font-size: 13px; color: var(--ink-3);
+      border-top: 1px solid var(--line);
+    }
+    footer a { color: var(--rose); text-decoration: none; }
+
+    /* ── Animations ────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up { animation: fadeUp 0.45s ease both; }
+    .fade-up:nth-child(2) { animation-delay: 0.06s; }
+    .fade-up:nth-child(3) { animation-delay: 0.12s; }
+    .fade-up:nth-child(4) { animation-delay: 0.18s; }
+    .fade-up:nth-child(5) { animation-delay: 0.24s; }
+    .fade-up:nth-child(6) { animation-delay: 0.30s; }
+    .fade-up:nth-child(7) { animation-delay: 0.36s; }
+
+    @media (max-width: 640px) {
+      .hero { padding: 60px 20px 40px; }
+      .cat-grid { grid-template-columns: 1fr; }
+      nav { padding: 0 16px; }
+      .nav-contact { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="logo" href="#" onclick="showHome()">
+    <div class="logo-mark">
+      <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+      </svg>
+    </div>
+    CoSign
+  </a>
+  <span class="nav-badge">Help Centre</span>
+  <a class="nav-contact" href="mailto:support@sevora.tech">Contact Support</a>
+</nav>
+
+<!-- HOME VIEW -->
+<div id="home-view">
+  <!-- Hero -->
+  <div class="hero fade-up">
+    <div class="hero-eyebrow">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+      We're here to help
+    </div>
+    <h1>How can we help you with <span>CoSign</span>?</h1>
+    <p>Find answers about orders, payments, escrow, returns and everything in between.</p>
+
+    <!-- Search -->
+    <div class="search-wrap">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      <input type="text" id="search" placeholder="Search for an answer…" autocomplete="off" />
+      <div id="search-results"></div>
+    </div>
+  </div>
+
+  <!-- Categories -->
+  <div class="categories">
+    <div class="section-label">Browse by topic</div>
+    <div class="cat-grid" id="cat-grid"></div>
+  </div>
+</div>
+
+<!-- CATEGORY VIEW -->
+<div id="category-view">
+  <div class="article-wrap">
+    <div class="breadcrumb">
+      <a onclick="showHome()">Help Centre</a>
+      <span>›</span>
+      <span id="cat-view-name"></span>
+    </div>
+    <div id="cat-view-icon" style="font-size:40px; margin-bottom:16px;"></div>
+    <h1 class="article-title" id="cat-view-title"></h1>
+    <p style="color:var(--ink-3); margin-bottom:32px; font-size:14px;" id="cat-view-desc"></p>
+    <div class="section-label">Articles in this section</div>
+    <div class="cat-article-list" id="cat-article-list"></div>
+  </div>
+</div>
+
+<!-- ARTICLE VIEW -->
+<div id="article-view">
+  <div class="article-wrap">
+    <div class="breadcrumb">
+      <a onclick="showHome()">Help Centre</a>
+      <span>›</span>
+      <a id="article-back-cat" onclick=""></a>
+      <span>›</span>
+      <span id="article-breadcrumb-title"></span>
+    </div>
+    <div class="article-header">
+      <div class="article-cat-pill" id="article-cat-pill"></div>
+      <h1 class="article-title" id="article-title"></h1>
+      <div class="article-meta">CoSign Help Centre · Last updated May 2026</div>
+    </div>
+    <div class="article-body" id="article-body"></div>
+  </div>
+</div>
+
+<!-- Contact Strip -->
+<div class="contact-strip" id="contact-strip">
+  <h2>Still need help?</h2>
+  <p>Our support team is available Monday–Friday, 8am–6pm GMT.</p>
+  <a class="contact-btn" href="mailto:support@sevora.tech">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
+    Email Support
+  </a>
+</div>
+
+<footer>
+  <p>© 2026 CoSign by <a href="https://sevora.tech">Sevora</a> · <a href="mailto:support@sevora.tech">support@sevora.tech</a></p>
+</footer>
+
+<script>
+// ── DATA ────────────────────────────────────────────────────────────────────
+const CATEGORIES = [
+  {
+    id: 'getting-started',
+    name: 'Getting Started',
+    icon: '🚀',
+    color: '#fff1f2',
+    desc: 'New to CoSign? Learn the basics of buying and selling.',
+    articles: ['what-is-cosign', 'create-account', 'buyer-vs-seller', 'how-to-browse']
+  },
+  {
+    id: 'orders',
+    name: 'Orders & Checkout',
+    icon: '🛒',
+    color: '#eff6ff',
+    desc: 'Placing orders, checkout, and order tracking.',
+    articles: ['how-to-order', 'track-order', 'cancel-order', 'order-statuses']
+  },
+  {
+    id: 'payments',
+    name: 'Payments & Wallet',
+    icon: '💳',
+    color: '#f0fdf4',
+    desc: 'MoMo, card payments, wallet top-up and more.',
+    articles: ['payment-methods', 'wallet-topup', 'wallet-balance', 'payment-failed']
+  },
+  {
+    id: 'escrow',
+    name: 'Escrow & Buyer Protection',
+    icon: '🔒',
+    color: '#fdf4ff',
+    desc: 'How CoSign protects your money until you confirm delivery.',
+    articles: ['what-is-escrow', 'escrow-timeline', 'confirm-delivery', 'escrow-dispute']
+  },
+  {
+    id: 'returns',
+    name: 'Returns & Refunds',
+    icon: '↩️',
+    color: '#fffbeb',
+    desc: 'Return items and get your money back.',
+    articles: ['return-policy', 'how-to-return', 'refund-timeline', 'damaged-item']
+  },
+  {
+    id: 'selling',
+    name: 'Selling on CoSign',
+    icon: '🏪',
+    color: '#fff7ed',
+    desc: 'Set up your store, list products, and get paid.',
+    articles: ['become-seller', 'list-product', 'seller-payouts', 'seller-commission']
+  },
+  {
+    id: 'account',
+    name: 'Account & Privacy',
+    icon: '👤',
+    color: '#f0f9ff',
+    desc: 'Manage your profile, privacy, and account settings.',
+    articles: ['edit-profile', 'privacy-settings', 'delete-account', 'change-password']
+  },
+  {
+    id: 'safety',
+    name: 'Trust & Safety',
+    icon: '🛡️',
+    color: '#fef2f2',
+    desc: 'Staying safe while buying and selling on CoSign.',
+    articles: ['is-cosign-safe', 'report-seller', 'suspicious-activity', 'cosign-guarantee']
+  },
+];
+
+const ARTICLES = {
+  // ── Getting Started ──────────────────────────────
+  'what-is-cosign': {
+    cat: 'getting-started',
+    title: 'What is CoSign?',
+    body: `
+      <p>CoSign is a Ghana-focused online marketplace that connects buyers and sellers across the country. Whether you're looking to buy fashion, electronics, home goods, or anything in between — CoSign makes it safe, simple, and fast.</p>
+      <h2>What makes CoSign different?</h2>
+      <p>CoSign uses an <strong>escrow system</strong> for every order. That means your payment is held securely until you confirm you've received your item in good condition. Sellers only get paid once you're satisfied.</p>
+      <div class="callout green">
+        <strong>🔒 Your money is always protected.</strong> CoSign never releases funds to a seller until the buyer confirms delivery.
+      </div>
+      <h2>Key features</h2>
+      <ul>
+        <li><strong>Escrow protection</strong> — funds held until delivery confirmed</li>
+        <li><strong>MoMo & card payments</strong> — pay with MTN MoMo, Vodafone Cash, AirtelTigo, or card via Paystack</li>
+        <li><strong>CoSign Wallet</strong> — top up and pay instantly for faster checkout</li>
+        <li><strong>Buyer & seller modes</strong> — switch between buying and selling in one app</li>
+        <li><strong>In-app chat</strong> — message sellers directly about products or orders</li>
+      </ul>
+    `
+  },
+  'create-account': {
+    cat: 'getting-started',
+    title: 'How to create a CoSign account',
+    body: `
+      <p>Creating a CoSign account takes less than 2 minutes. Here's how:</p>
+      <div class="step"><div class="step-num">1</div><div class="step-content"><strong>Download the CoSign app</strong>Available on Android. Search "CoSign" in the Play Store.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-content"><strong>Tap "Create Account"</strong>On the welcome screen, tap Sign Up.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-content"><strong>Enter your email and create a password</strong>Use a valid email address you have access to.</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-content"><strong>Verify your email</strong>Check your inbox for a verification code from CoSign and enter it in the app.</div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-content"><strong>Complete your profile</strong>Add a display name and you're ready to start shopping.</div></div>
+      <div class="callout">
+        <strong>Tip:</strong> You can also sign in with Google for even faster setup.
+      </div>
+    `
+  },
+  'buyer-vs-seller': {
+    cat: 'getting-started',
+    title: 'Buyer mode vs Seller mode',
+    body: `
+      <p>CoSign has two modes in one app — you can switch between them any time.</p>
+      <h2>Buyer mode</h2>
+      <p>The default mode when you create an account. In buyer mode you can browse products, add to cart, checkout, track orders, and manage returns.</p>
+      <h2>Seller mode</h2>
+      <p>If you want to sell on CoSign, you need to apply to become a seller. Once approved, you can switch to seller mode from the Account tab to manage your store, products, and orders.</p>
+      <div class="callout green">
+        <strong>One account, both modes.</strong> You don't need separate accounts to buy and sell on CoSign.
+      </div>
+      <h2>How to switch modes</h2>
+      <div class="step"><div class="step-num">1</div><div class="step-content"><strong>Go to Account tab</strong>Tap the Account icon in the bottom navigation.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-content"><strong>Tap the mode toggle</strong>You'll see a "Switch to Seller" or "Switch to Buyer" button at the top of the screen.</div></div>
+    `
+  },
+  'how-to-browse': {
+    cat: 'getting-started',
+    title: 'How to browse and find products',
+    body: `
+      <p>CoSign makes it easy to find exactly what you're looking for.</p>
+      <h2>Home feed</h2>
+      <p>Your home screen shows a personalised feed of products based on your interests and browsing history. Scroll down to discover new items.</p>
+      <h2>Discover & Search</h2>
+      <p>Tap the <strong>Discover</strong> tab to search for specific products, brands, or categories. Use filters to narrow by price, location, condition, and more.</p>
+      <h2>Product page</h2>
+      <p>Tap any product to see photos, description, price, seller ratings, and reviews. You can add to cart or buy directly from the product page.</p>
+      <h2>Wishlist</h2>
+      <p>Tap the heart icon on any product to save it to your wishlist. Access your wishlist from the Account tab.</p>
+    `
+  },
+
+  // ── Orders ───────────────────────────────────────
+  'how-to-order': {
+    cat: 'orders',
+    title: 'How to place an order',
+    body: `
+      <p>Ordering on CoSign is straightforward. Here's how to do it:</p>
+      <div class="step"><div class="step-num">1</div><div class="step-content"><strong>Find a product you want</strong>Browse the home feed or use Discover to search.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-content"><strong>Add to cart</strong>Tap "Add to Cart" on the product page. Choose your size or variant if applicable.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-content"><strong>Go to checkout</strong>Tap the cart icon and review your items, then tap "Checkout".</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-content"><strong>Choose your delivery address</strong>Select a saved address or add a new one.</div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-content"><strong>Select shipping method</strong>Choose between door-to-door delivery or bus station pickup.</div></div>
+      <div class="step"><div class="step-num">6</div><div class="step-content"><strong>Choose payment method</strong>Pay with your CoSign Wallet, MoMo, or card via Paystack.</div></div>
+      <div class="step"><div class="step-num">7</div><div class="step-content"><strong>Confirm your order</strong>Review the total and tap "Place Order". Your payment goes into escrow immediately.</div></div>
+      <div class="callout green">
+        <strong>Your money is safe.</strong> Payment is held in escrow and only released to the seller after you confirm delivery.
+      </div>
+    `
+  },
+  'track-order': {
+    cat: 'orders',
+    title: 'How to track your order',
+    body: `
+      <p>You can track your order status in real-time from the Orders tab.</p>
+      <h2>Order statuses explained</h2>
+      <ul>
+        <li><strong>Confirmed</strong> — Your order has been placed and payment is in escrow. Waiting for the seller to confirm.</li>
+        <li><strong>Processing</strong> — Seller has confirmed and is preparing your item.</li>
+        <li><strong>Shipped</strong> — Your item is on the way. You may receive a tracking number.</li>
+        <li><strong>Delivered</strong> — Seller has marked the order as delivered.</li>
+        <li><strong>Completed</strong> — You've confirmed receipt and the seller has been paid.</li>
+      </ul>
+      <h2>How to track</h2>
+      <div class="step"><div class="step-num">1</div><div class="step-content"><strong>Go to the Orders tab</strong>Tap Orders in the bottom navigation.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-content"><strong>Tap your order</strong>Find the order and tap it to see full details and current status.</div></div>
+      <div class="callout amber">
+        <strong>Remember to confirm delivery!</strong> Once your item arrives, tap "Confirm Delivery" so the seller gets paid and your order is completed.
+      </div>
+    `
+  },
+  'cancel-order': {
+    cat: 'orders',
+    title: 'How to cancel an order',
+    body: `
+      <p>You can request to cancel an order before it has been shipped.</p>
+      <h2>When can I cancel?</h2>
+      <ul>
+        <li><strong>Before seller confirms</strong> — You can cancel freely at this stage.</li>
+        <li><strong>After seller confirms but before shipping</strong> — You can still request cancellation; the seller must approve it.</li>
+        <li><strong>After shipping</strong> — You cannot cancel. You would need to initiate a return instead.</li>
+      </ul>
+      <h2>How to cancel</h2>
+      <div class="step"><div class="step-num">1</div><div class="step-content"><strong>Go to Orders tab</strong>Find the order you want to cancel.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-content"><strong>Tap "Cancel Order"</strong>This option appears on the order detail screen if cancellation is available.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-content"><strong>Select a reason</strong>Choose why you're cancelling and confirm.</div></div>
+      <div class="callout green">
+        <strong>Refunds are automatic.</strong> When a cancellation is approved, your payment is refunded to your CoSign Wallet or original payment method within 1–3 business days.
+      </div>
+    `
+  },
+  'order-statuses': {
+    cat: 'orders',
+    title: 'Understanding order statuses',
+    body: `
+      <p>Every order on CoSign goes through a series of statuses from placement to completion.</p>
+      <h2>Full status breakdown</h2>
+      <ul>
+        <li><strong>Pending</strong> — Order created, awaiting payment confirmation.</li>
+        <li><strong>Confirmed</strong> — Payment received and in escrow. Seller notified.</li>
+        <li><strong>Processing</strong> — Seller has accepted and is preparing your item.</li>
+        <li><strong>Shipped</strong> — Item dispatched. Tracking number may be added by seller.</li>
+        <li><strong>Delivered</strong> — Seller marked as delivered. Awaiting your confirmation.</li>
+        <li><strong>Completed</strong> — You confirmed receipt. Seller paid. Order closed.</li>
+        <li><strong>Cancelled</strong> — Order cancelled by buyer or seller. Refund issued.</li>
+        <li><strong>Disputed</strong> — A dispute has been raised and is under review.</li>
+      </ul>
+      <div class="callout amber">
+        <strong>Don't forget to confirm delivery.</strong> If you don't confirm within 7 days of the seller marking as delivered, the order auto-completes and funds are released to the seller.
+      </div>
+    `
+  },
+
+  // ── Payments ─────────────────────────────────────
+  'payment-methods': {
+    cat: 'payments',
+    title: 'Payment methods on CoSign',
+    body: `
+      <p>CoSign supports multiple ways to pay, all processed securely via Paystack.</p>
+      <h2>Available payment methods</h2>
+      <ul>
+        <li><strong>CoSign Wallet</strong> — The fastest checkout option. Top up your wallet and pay instantly.</li>
+        <li><strong>Mobile Money (MoMo)</strong> — Pay with MTN MoMo, Vodafone Cash, or AirtelTigo Money via Paystack.</li>
+        <li><strong>Card</strong> — Visa and Mastercard accepted via Paystack's secure checkout.</li>
+        <li><strong>Bank Transfer</strong> — Pay via bank transfer through Paystack.</li>
+      </ul>
+      <h2>Which should I use?</h2>
+      <p>For the fastest experience, we recommend topping up your CoSign Wallet and paying from there. It skips the Paystack redirect and completes checkout in one tap.</p>
+      <div class="callout green">
+        <strong>All payments are secured by Paystack</strong>, Ghana's leading payment processor. Your card and MoMo details are never stored on CoSign's servers.
+      </div>
+    `
+  },
+  'wallet-topup': {
+    cat: 'payments',
+    title: 'How to top up your CoSign Wallet',
+    body: `
+      <p>Your CoSign Wallet lets you pay for orders instantly without going through MoMo or card every time.</p>
+      <h2>How to top up</h2>
+      <div class="step"><div class="step-num">1</div><div class="step-content"><strong>Go to Account → Wallet</strong>Tap the Account tab, then tap Wallet.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-content"><strong>Tap "Top Up"</strong>Enter the amount you want to add (minimum GHS 1).</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-content"><strong>Complete payment via Paystack</strong>You'll be taken to Paystack's secure page. Pay with MoMo or card.</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-content"><strong>Done!</strong>Your wallet balance updates immediately after successful payment.</div></div>
+      <div class="callout">
+        <strong>Quick amounts:</strong> Use the GHS 20, 50, 100, 200, 500 quick-select buttons for faster entry.
+      </div>
+    `
+  },
+  'wallet-balance': {
+    cat: 'payments',
+    title: 'How your wallet balance works',
+    body: `
+      <p>Your CoSign Wallet is a prepaid balance you can use for orders, refunds, and more.</p>
+      <h2>What goes into your wallet?</h2>
+      <ul>
+        <li>Manual top-ups via MoMo or card</li>
+        <li>Refunds from cancelled or returned orders</li>
+        <li>Seller payouts (if you're a seller)</li>
+      </ul>
+      <h2>What comes out of your wallet?</h2>
+      <ul>
+        <li>Order payments when you choose "Pay with Wallet" at checkout</li>
+      </ul>
+      <h2>Is my wallet balance safe?</h2>
+      <p>Yes. Your wallet balance is held securely and is always available. CoSign does not charge inactivity fees or expiry on wallet balances.</p>
+    `
+  },
+  'payment-failed': {
+    cat: 'payments',
+    title: 'What to do if your payment fails',
+    body: `
+      <p>Payment failures can happen for several reasons. Here's what to do.</p>
+      <h2>Common reasons for payment failure</h2>
+      <ul>
+        <li>Insufficient MoMo or card balance</li>
+        <li>Incorrect card details</li>
+        <li>Mobile network issues during MoMo prompt</li>
+        <li>MoMo PIN entered incorrectly or timed out</li>
+        <li>Bank declining the transaction</li>
+      </ul>
+      <h2>What to do</h2>
+      <div class="step"><div class="step-num">1</div><div class="step-content"><strong>Check your balance</strong>Ensure your MoMo or bank account has sufficient funds.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-content"><strong>Try again</strong>Go to Orders tab → find the pending order → tap "Complete Payment".</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-content"><strong>Try a different payment method</strong>Switch from MoMo to card or use your CoSign Wallet.</div></div>
+      <div class="callout green">
+        <strong>No double charge.</strong> If a payment fails, your money is never deducted. Failed transactions are automatically voided.
+      </div>
+    `
+  },
+
+  // ── Escrow ───────────────────────────────────────
+  'what-is-escrow': {
+    cat: 'escrow',
+    title: 'What is escrow and how does it protect you?',
+    body: `
+      <p>Escrow is CoSign's core buyer protection system. When you pay for an order, your money doesn't go directly to the seller. Instead, it's held by CoSign in a secure escrow account until you confirm you've received your item.</p>
+      <h2>How it works</h2>
+      <div class="step"><div class="step-num">1</div><div class="step-content"><strong>You pay</strong>Your payment goes into escrow. The seller can see the payment is secured but cannot access it yet.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-content"><strong>Seller ships</strong>The seller ships your item knowing the funds are guaranteed once you confirm.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-content"><strong>You confirm</strong>Once you receive your item in good condition, tap "Confirm Delivery".</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-content"><strong>Seller gets paid</strong>Funds are released to the seller immediately after your confirmation.</div></div>
+      <div class="callout green">
+        <strong>Never pay outside CoSign.</strong> If a seller asks you to pay via direct MoMo or bank transfer outside the app, this is a scam. Report it immediately.
+      </div>
+    `
+  },
+  'escrow-timeline': {
+    cat: 'escrow',
+    title: 'Escrow timeline and deadlines',
+    body: `
+      <p>The escrow process has specific timelines to ensure both buyers and sellers are protected.</p>
+      <h2>Key deadlines</h2>
+      <ul>
+        <li><strong>Seller confirmation</strong> — Seller must confirm your order within 24 hours of payment.</li>
+        <li><strong>Seller shipment</strong> — Seller must ship within the agreed shipping window (typically 2–3 days).</li>
+        <li><strong>Buyer confirmation</strong> — You have 7 days after the seller marks "Delivered" to confirm receipt.</li>
+        <li><strong>Auto-completion</strong> — If you don't confirm within 7 days, the order auto-completes and funds are released to the seller.</li>
+      </ul>
+      <div class="callout amber">
+        <strong>Check your orders regularly.</strong> If you receive an item but forget to confirm, funds will auto-release after 7 days. Always confirm as soon as you're satisfied.
+      </div>
+    `
+  },
+  'confirm-delivery': {
+    cat: 'escrow',
+    title: 'How to confirm delivery',
+    body: `
+      <p>Confirming delivery releases the escrow funds to the seller and completes your order.</p>
+      <h2>Steps to confirm</h2>
+      <div class="step"><div class="step-num">1</div><div class="step-content"><strong>Inspect your item</strong>Make sure the item matches the description and is in good condition before confirming.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-content"><strong>Go to Orders tab</strong>Find the order and tap on it.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-content"><strong>Tap "Confirm Delivery"</strong>A confirmation prompt will appear. Confirm to release funds to the seller.</div></div>
+      <div class="callout">
+        <strong>Only confirm when you are satisfied.</strong> Once you confirm delivery, the transaction is final. If you have an issue, open a dispute before confirming.
+      </div>
+    `
+  },
+  'escrow-dispute': {
+    cat: 'escrow',
+    title: 'How to raise an escrow dispute',
+    body: `
+      <p>If you receive the wrong item, a damaged item, or no item at all — do not confirm delivery. Instead, raise a dispute.</p>
+      <h2>When to raise a dispute</h2>
+      <ul>
+        <li>Item received is not as described</li>
+        <li>Item is damaged or defective</li>
+        <li>Item was never received</li>
+        <li>Seller is unresponsive</li>
+      </ul>
+      <h2>How to raise a dispute</h2>
+      <div class="step"><div class="step-num">1</div><div class="step-content"><strong>Go to the order</strong>Find the order in your Orders tab.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-content"><strong>Tap "Raise Dispute"</strong>Available on the order detail screen before you confirm delivery.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-content"><strong>Describe the issue</strong>Provide details and photos if possible. The CoSign team will review within 2 business days.</div></div>
+      <div class="callout green">
+        <strong>Your funds are safe during a dispute.</strong> Escrow funds are held and neither party can access them while a dispute is active.
+      </div>
+    `
+  },
+
+  // ── Returns ──────────────────────────────────────
+  'return-policy': {
+    cat: 'returns',
+    title: 'CoSign return policy',
+    body: `
+      <p>CoSign supports returns within <strong>7 days of delivery confirmation</strong>, subject to eligibility.</p>
+      <h2>Eligible for return</h2>
+      <ul>
+        <li>Item is significantly different from the description</li>
+        <li>Item arrived damaged or defective</li>
+        <li>Wrong item was sent</li>
+      </ul>
+      <h2>Not eligible for return</h2>
+      <ul>
+        <li>Change of mind after confirming delivery</li>
+        <li>Items marked "Final Sale" by the seller</li>
+        <li>Digital products or services</li>
+        <li>Items damaged by the buyer after receipt</li>
+      </ul>
+      <div class="callout amber">
+        <strong>Document everything.</strong> Take photos when you receive your item. This helps resolve disputes faster if something is wrong.
+      </div>
+    `
+  },
+  'how-to-return': {
+    cat: 'returns',
+    title: 'How to return an item',
+    body: `
+      <p>If you need to return an item, here's the process:</p>
+      <div class="step"><div class="step-num">1</div><div class="step-content"><strong>Go to your order</strong>Open the Orders tab and find the order.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-content"><strong>Tap "Return Item"</strong>This option is available within 7 days of confirming delivery.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-content"><strong>Select a reason and describe the issue</strong>Be as detailed as possible and attach photos.</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-content"><strong>Wait for seller response</strong>The seller has 48 hours to accept or reject the return request.</div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-content"><strong>Ship the item back</strong>Once the return is approved, ship the item back to the seller's address.</div></div>
+      <div class="step"><div class="step-num">6</div><div class="step-content"><strong>Refund issued</strong>Once the seller confirms receipt, your refund is sent to your CoSign Wallet.</div></div>
+    `
+  },
+  'refund-timeline': {
+    cat: 'returns',
+    title: 'How long do refunds take?',
+    body: `
+      <p>Refund timing depends on the reason and payment method.</p>
+      <h2>Refund timelines</h2>
+      <ul>
+        <li><strong>Order cancellation (before shipment)</strong> — Refund to CoSign Wallet: instant. Refund to MoMo/card: 1–3 business days.</li>
+        <li><strong>Return approved by seller</strong> — Refund to CoSign Wallet within 24 hours of seller confirming receipt.</li>
+        <li><strong>Dispute resolved in your favour</strong> — Refund within 1 business day of resolution.</li>
+      </ul>
+      <div class="callout green">
+        <strong>Fastest refunds go to your CoSign Wallet.</strong> Wallet refunds are instant. If you prefer a refund to your original payment method, allow up to 3 business days.
+      </div>
+    `
+  },
+  'damaged-item': {
+    cat: 'returns',
+    title: 'What to do if you receive a damaged item',
+    body: `
+      <p>Receiving a damaged item is frustrating. Here's exactly what to do.</p>
+      <div class="step"><div class="step-num">1</div><div class="step-content"><strong>Do not confirm delivery</strong>If you notice damage immediately, do not tap "Confirm Delivery".</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-content"><strong>Take photos immediately</strong>Document the damage before opening the package further.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-content"><strong>Raise a dispute</strong>Go to the order → Raise Dispute → select "Item damaged" → attach photos.</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-content"><strong>Contact the seller</strong>Message the seller via in-app chat to notify them.</div></div>
+      <div class="callout amber">
+        <strong>If you already confirmed delivery</strong> by mistake, you still have 7 days to initiate a return. Go to Orders → tap the order → Return Item.
+      </div>
+    `
+  },
+
+  // ── Selling ──────────────────────────────────────
+  'become-seller': {
+    cat: 'selling',
+    title: 'How to become a seller on CoSign',
+    body: `
+      <p>Selling on CoSign is free to start. Here's how to set up your store:</p>
+      <div class="step"><div class="step-num">1</div><div class="step-content"><strong>Go to Account tab</strong>Tap "Become a Seller" or "Switch to Seller Mode".</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-content"><strong>Complete seller onboarding</strong>Enter your store name, description, and contact details.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-content"><strong>Verify your identity</strong>Upload a valid Ghana ID for KYC verification.</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-content"><strong>List your first product</strong>Once verified, you can start listing products immediately.</div></div>
+      <div class="callout green">
+        <strong>Free to start.</strong> CoSign takes a small commission on sales. You only pay when you earn.
+      </div>
+    `
+  },
+  'list-product': {
+    cat: 'selling',
+    title: 'How to list a product',
+    body: `
+      <p>Adding products to your CoSign store is quick and straightforward.</p>
+      <div class="step"><div class="step-num">1</div><div class="step-content"><strong>Switch to Seller mode</strong>Go to Account → Switch to Seller Mode.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-content"><strong>Tap "Add Product"</strong>Find the Add Product button in your seller dashboard.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-content"><strong>Add photos</strong>Upload at least one clear photo. Multiple angles recommended.</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-content"><strong>Fill in details</strong>Enter product name, category, condition (new/used), description, and price.</div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-content"><strong>Set stock and variants</strong>Add variants (size, colour) and set your stock quantity.</div></div>
+      <div class="step"><div class="step-num">6</div><div class="step-content"><strong>Submit for review</strong>Your product will go live after a quick moderation check (usually under 1 hour).</div></div>
+    `
+  },
+  'seller-payouts': {
+    cat: 'selling',
+    title: 'How seller payouts work',
+    body: `
+      <p>When a buyer confirms delivery, your earnings are released from escrow to your CoSign Wallet. From there, you can withdraw to your mobile money account.</p>
+      <h2>Payout timeline</h2>
+      <ul>
+        <li>Buyer confirms delivery → funds moved to your Seller Wallet immediately</li>
+        <li>Withdrawal to MoMo → processed within 1–2 business days</li>
+      </ul>
+      <h2>How to withdraw</h2>
+      <div class="step"><div class="step-num">1</div><div class="step-content"><strong>Go to Seller Finance</strong>Switch to Seller mode → tap Finance.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-content"><strong>Tap "Withdraw"</strong>Enter the amount and your MoMo number.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-content"><strong>Confirm</strong>Your withdrawal will be processed within 1–2 business days.</div></div>
+      <div class="callout amber">
+        <strong>Minimum withdrawal:</strong> GHS 10. Ensure your MoMo number is registered and active.
+      </div>
+    `
+  },
+  'seller-commission': {
+    cat: 'selling',
+    title: 'Commission and fees for sellers',
+    body: `
+      <p>CoSign takes a small commission on every completed sale to cover platform costs and buyer protection.</p>
+      <h2>Commission rates</h2>
+      <p>Commission is calculated as a percentage of the order subtotal (excluding shipping). The exact rate depends on your seller plan.</p>
+      <ul>
+        <li><strong>Standard plan</strong> — 12% commission per sale</li>
+      </ul>
+      <h2>No listing fees</h2>
+      <p>You pay nothing to list products. Commission is only charged when a sale is completed and confirmed by the buyer.</p>
+      <div class="callout green">
+        <strong>You always see your exact earnings</strong> before withdrawal. CoSign shows your gross sale, commission, and net payout clearly in the Finance screen.
+      </div>
+    `
+  },
+
+  // ── Account ──────────────────────────────────────
+  'edit-profile': {
+    cat: 'account',
+    title: 'How to edit your profile',
+    body: `
+      <p>You can update your display name, avatar, and other profile details at any time.</p>
+      <div class="step"><div class="step-num">1</div><div class="step-content"><strong>Go to Account tab</strong>Tap the Account icon in the bottom navigation.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-content"><strong>Tap "My Profile"</strong>This takes you to your profile page.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-content"><strong>Tap the edit icon</strong>Tap the pencil icon in the top right corner.</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-content"><strong>Update your details</strong>Change your display name, profile photo, or gender.</div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-content"><strong>Save</strong>Tap "Update Profile" to save your changes.</div></div>
+    `
+  },
+  'privacy-settings': {
+    cat: 'account',
+    title: 'Managing your privacy settings',
+    body: `
+      <p>CoSign gives you control over your privacy. Access privacy settings from Account → Settings → Privacy.</p>
+      <h2>Available privacy controls</h2>
+      <ul>
+        <li><strong>Who can message me</strong> — Toggle to prevent anyone from starting a new chat conversation with you.</li>
+        <li><strong>Show online status</strong> — Hide your active/online status from chat participants.</li>
+        <li><strong>Personalised recommendations</strong> — Opt out of CoSign using your purchase history to recommend products.</li>
+      </ul>
+      <div class="callout">
+        Changes to privacy settings take effect immediately and are saved to your account.
+      </div>
+    `
+  },
+  'delete-account': {
+    cat: 'account',
+    title: 'How to delete your account',
+    body: `
+      <p>You can request account deletion from the app. This is permanent and cannot be undone.</p>
+      <h2>Before you delete</h2>
+      <ul>
+        <li>Withdraw any remaining wallet balance</li>
+        <li>Ensure all active orders are completed</li>
+        <li>Download any data you want to keep</li>
+      </ul>
+      <h2>How to delete</h2>
+      <div class="step"><div class="step-num">1</div><div class="step-content"><strong>Go to Account → Settings</strong>Scroll to the bottom of Settings.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-content"><strong>Tap "Delete Account"</strong>Read the warning carefully.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-content"><strong>Confirm deletion</strong>Enter your password and confirm. Your account will be scheduled for deletion within 30 days.</div></div>
+      <div class="callout">
+        <strong>30-day grace period.</strong> Your account is not immediately deleted. You have 30 days to log back in and cancel the deletion if you change your mind.
+      </div>
+    `
+  },
+  'change-password': {
+    cat: 'account',
+    title: 'How to change your password',
+    body: `
+      <p>Keep your account secure by updating your password regularly.</p>
+      <div class="step"><div class="step-num">1</div><div class="step-content"><strong>Go to Account → Settings → Security</strong></div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-content"><strong>Tap "Change Password"</strong></div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-content"><strong>Enter your current password</strong>This verifies it's you.</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-content"><strong>Enter your new password</strong>Must be at least 8 characters.</div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-content"><strong>Save</strong>Your password is updated immediately.</div></div>
+      <div class="callout green">
+        <strong>Forgot your password?</strong> On the login screen, tap "Forgot Password" to reset it via email.
+      </div>
+    `
+  },
+
+  // ── Safety ───────────────────────────────────────
+  'is-cosign-safe': {
+    cat: 'safety',
+    title: 'Is CoSign safe to use?',
+    body: `
+      <p>Yes. CoSign is built with multiple layers of protection for both buyers and sellers.</p>
+      <h2>How we protect buyers</h2>
+      <ul>
+        <li><strong>Escrow payments</strong> — Your money is never sent directly to a seller until you confirm delivery.</li>
+        <li><strong>Seller verification</strong> — All sellers go through KYC (identity verification) before they can sell.</li>
+        <li><strong>Dispute resolution</strong> — If something goes wrong, CoSign's team reviews and resolves disputes fairly.</li>
+        <li><strong>Secure payments</strong> — All payments go through Paystack, Ghana's leading payment processor.</li>
+      </ul>
+      <h2>How we protect sellers</h2>
+      <ul>
+        <li>Guaranteed payment once delivery is confirmed</li>
+        <li>Dispute process for false claims</li>
+        <li>Secure seller identity verification</li>
+      </ul>
+    `
+  },
+  'report-seller': {
+    cat: 'safety',
+    title: 'How to report a seller',
+    body: `
+      <p>If you encounter a seller behaving dishonestly or violating CoSign's policies, please report them immediately.</p>
+      <h2>What to report</h2>
+      <ul>
+        <li>Selling counterfeit or fake products</li>
+        <li>Requesting payment outside the CoSign app</li>
+        <li>Harassment or abusive behaviour in chat</li>
+        <li>Fraudulent listings</li>
+      </ul>
+      <h2>How to report</h2>
+      <div class="step"><div class="step-num">1</div><div class="step-content"><strong>Go to the seller's store page</strong>Tap the seller's name on any product or order.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-content"><strong>Tap the ⋯ menu</strong>Find the "Report Seller" option.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-content"><strong>Select a reason and submit</strong>Our moderation team reviews all reports within 24 hours.</div></div>
+    `
+  },
+  'suspicious-activity': {
+    cat: 'safety',
+    title: 'Recognising and avoiding scams',
+    body: `
+      <p>CoSign is safe, but it's important to know what to watch out for.</p>
+      <h2>Red flags to watch for</h2>
+      <ul>
+        <li><strong>Payment outside CoSign</strong> — Any seller asking for direct MoMo, bank transfer, or cash is a scam. Always pay through the app.</li>
+        <li><strong>Too good to be true prices</strong> — Be cautious of products priced significantly below market value.</li>
+        <li><strong>Pressure to act fast</strong> — Scammers often create urgency. Take your time.</li>
+        <li><strong>Requests for personal information</strong> — CoSign will never ask for your password or bank PIN.</li>
+      </ul>
+      <div class="callout">
+        <strong>Golden rule:</strong> If a seller asks you to pay outside CoSign for any reason, do not proceed. Report them immediately and contact support@sevora.tech.
+      </div>
+    `
+  },
+  'cosign-guarantee': {
+    cat: 'safety',
+    title: 'The CoSign Buyer Guarantee',
+    body: `
+      <p>Every purchase on CoSign is covered by the CoSign Buyer Guarantee.</p>
+      <h2>What's covered</h2>
+      <ul>
+        <li>Item not received</li>
+        <li>Item significantly different from description</li>
+        <li>Item arrived damaged or defective</li>
+        <li>Seller fails to ship within the agreed timeframe</li>
+      </ul>
+      <h2>What's not covered</h2>
+      <ul>
+        <li>Purchases made outside the CoSign app</li>
+        <li>Change of mind after confirming delivery</li>
+        <li>Items damaged by the buyer</li>
+      </ul>
+      <div class="callout green">
+        <strong>Always buy through CoSign.</strong> The guarantee only applies to purchases made and paid for through the official CoSign app.
+      </div>
+    `
+  },
+};
+
+// ── BUILD SEARCH INDEX ───────────────────────────────────────────────────────
+const searchIndex = Object.entries(ARTICLES).map(([id, art]) => {
+  const cat = CATEGORIES.find(c => c.id === art.cat);
+  const text = art.title + ' ' + art.body.replace(/<[^>]+>/g, ' ').toLowerCase();
+  return { id, title: art.title, catId: art.cat, catName: cat?.name || '', text };
+});
+
+// ── RENDER HOME ──────────────────────────────────────────────────────────────
+function renderHome() {
+  const grid = document.getElementById('cat-grid');
+  grid.innerHTML = CATEGORIES.map(cat => `
+    <div class="cat-card fade-up" onclick="showCategory('${cat.id}')">
+      <div class="cat-icon" style="background:${cat.color}">${cat.icon}</div>
+      <div class="cat-name">${cat.name}</div>
+      <div class="cat-desc">${cat.desc}</div>
+      <div class="cat-count">${cat.articles.length} articles</div>
+    </div>
+  `).join('');
+}
+
+// ── NAVIGATION ───────────────────────────────────────────────────────────────
+function showHome() {
+  document.getElementById('home-view').style.display = 'block';
+  document.getElementById('category-view').style.display = 'none';
+  document.getElementById('article-view').style.display = 'none';
+  document.getElementById('contact-strip').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function showCategory(catId) {
+  const cat = CATEGORIES.find(c => c.id === catId);
+  if (!cat) return;
+  document.getElementById('home-view').style.display = 'none';
+  document.getElementById('category-view').style.display = 'block';
+  document.getElementById('article-view').style.display = 'none';
+  document.getElementById('cat-view-name').textContent = cat.name;
+  document.getElementById('cat-view-icon').textContent = cat.icon;
+  document.getElementById('cat-view-title').textContent = cat.name;
+  document.getElementById('cat-view-desc').textContent = cat.desc;
+  const list = document.getElementById('cat-article-list');
+  list.innerHTML = cat.articles.map(aid => {
+    const art = ARTICLES[aid];
+    if (!art) return '';
+    return `<div class="cat-article-item" onclick="showArticle('${aid}')">
+      <span class="cat-article-item-title">${art.title}</span>
+      <span class="cat-article-item-arrow">›</span>
+    </div>`;
+  }).join('');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function showArticle(artId) {
+  const art = ARTICLES[artId];
+  if (!art) return;
+  const cat = CATEGORIES.find(c => c.id === art.cat);
+  document.getElementById('home-view').style.display = 'none';
+  document.getElementById('category-view').style.display = 'none';
+  document.getElementById('article-view').style.display = 'block';
+  document.getElementById('article-breadcrumb-title').textContent = art.title;
+  document.getElementById('article-back-cat').textContent = cat?.name || '';
+  document.getElementById('article-back-cat').setAttribute('onclick', `showCategory('${art.cat}')`);
+  document.getElementById('article-cat-pill').textContent = cat?.icon + ' ' + cat?.name;
+  document.getElementById('article-title').textContent = art.title;
+  document.getElementById('article-body').innerHTML = art.body;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ── SEARCH ───────────────────────────────────────────────────────────────────
+const searchInput = document.getElementById('search');
+const searchResults = document.getElementById('search-results');
+
+searchInput.addEventListener('input', function() {
+  const q = this.value.trim().toLowerCase();
+  if (!q || q.length < 2) { searchResults.classList.remove('show'); return; }
+  const hits = searchIndex.filter(a => a.text.includes(q) || a.title.toLowerCase().includes(q)).slice(0, 6);
+  if (hits.length === 0) {
+    searchResults.innerHTML = '<div class="search-empty">No results found. Try different keywords.</div>';
+  } else {
+    searchResults.innerHTML = hits.map(h => `
+      <a class="search-item" onclick="showArticle('${h.id}'); searchResults.classList.remove('show'); searchInput.value='';">
+        <span class="search-item-cat">${h.catName}</span>
+        <span class="search-item-title">${h.title}</span>
+      </a>
+    `).join('');
+  }
+  searchResults.classList.add('show');
+});
+
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.search-wrap')) searchResults.classList.remove('show');
+});
+
+// ── INIT ─────────────────────────────────────────────────────────────────────
+renderHome();
+</script>
+</body>
+</html>
