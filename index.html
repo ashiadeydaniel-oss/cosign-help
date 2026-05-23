@@ -318,11 +318,79 @@
     .fade-up:nth-child(6) { animation-delay: 0.30s; }
     .fade-up:nth-child(7) { animation-delay: 0.36s; }
 
+    /* ── Legal pages ───────────────────────────────── */
+    #legal-view { display: none; }
+    .legal-wrap {
+      max-width: 720px; margin: 0 auto;
+      padding: 40px 24px 100px;
+    }
+    .legal-header { margin-bottom: 40px; }
+    .legal-effective {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.5px;
+      color: var(--ink-3); background: var(--line);
+      padding: 4px 12px; border-radius: 20px; margin-bottom: 16px;
+    }
+    .legal-title {
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(26px, 4vw, 38px);
+      font-weight: 800; line-height: 1.1;
+      letter-spacing: -1px; color: var(--ink); margin-bottom: 12px;
+    }
+    .legal-subtitle { font-size: 15px; color: var(--ink-3); line-height: 1.7; }
+    .legal-body { font-size: 15px; line-height: 1.85; color: var(--ink-2); }
+    .legal-body h2 {
+      font-family: 'Sora', sans-serif;
+      font-size: 19px; font-weight: 800;
+      color: var(--ink); margin: 44px 0 14px;
+      letter-spacing: -0.3px; padding-top: 12px;
+      border-top: 1px solid var(--line);
+    }
+    .legal-body h3 {
+      font-size: 15px; font-weight: 700;
+      color: var(--ink); margin: 24px 0 8px;
+    }
+    .legal-body p { margin-bottom: 16px; }
+    .legal-body ul, .legal-body ol { padding-left: 24px; margin-bottom: 16px; }
+    .legal-body li { margin-bottom: 8px; }
+    .legal-body strong { color: var(--ink); font-weight: 700; }
+    .legal-body a { color: var(--rose); text-decoration: none; }
+    .legal-callout {
+      background: var(--rose-bg); border-left: 4px solid var(--rose);
+      border-radius: 0 12px 12px 0; padding: 16px 20px;
+      margin: 24px 0; font-size: 14px; color: var(--ink-2); line-height: 1.65;
+    }
+    .legal-callout.green { background: #ecfdf5; border-color: var(--emerald); }
+    .legal-callout.amber { background: #fffbeb; border-color: var(--amber); }
+    .legal-toc {
+      background: var(--zinc100); border-radius: 16px;
+      padding: 20px 24px; margin-bottom: 40px;
+    }
+    .legal-toc-title {
+      font-family: 'Sora', sans-serif;
+      font-size: 12px; font-weight: 700;
+      letter-spacing: 1px; text-transform: uppercase;
+      color: var(--ink-3); margin-bottom: 12px;
+    }
+    .legal-toc ol { padding-left: 20px; margin: 0; }
+    .legal-toc li { margin-bottom: 6px; font-size: 14px; }
+    .legal-toc a { color: var(--rose); text-decoration: none; font-weight: 500; }
+    .legal-toc a:hover { text-decoration: underline; }
+    .legal-nav-links {
+      display: flex; flex-wrap: wrap; gap: 10px;
+      margin-top: 48px; padding-top: 32px;
+      border-top: 1px solid var(--line);
+    }
+    .legal-nav-link {
+      font-size: 13px; font-weight: 600; color: var(--rose);
+      text-decoration: none; padding: 8px 16px;
+      border: 1.5px solid var(--rose-bg); border-radius: 20px;
+      background: var(--rose-bg); transition: all 0.15s; cursor: pointer;
+    }
+    .legal-nav-link:hover { background: var(--rose); color: var(--white); }
+
     @media (max-width: 640px) {
-      .hero { padding: 60px 20px 40px; }
-      .cat-grid { grid-template-columns: 1fr; }
-      nav { padding: 0 16px; }
-      .nav-contact { display: none; }
+      .legal-wrap { padding: 24px 16px 80px; }
     }
   </style>
 </head>
@@ -403,6 +471,25 @@
   </div>
 </div>
 
+<!-- LEGAL VIEW -->
+<div id="legal-view">
+  <div class="legal-wrap">
+    <div class="breadcrumb">
+      <a onclick="showHome()">Help Centre</a>
+      <span>›</span>
+      <span id="legal-breadcrumb-title"></span>
+    </div>
+    <div class="legal-header">
+      <div class="legal-effective" id="legal-effective"></div>
+      <h1 class="legal-title" id="legal-title"></h1>
+      <p class="legal-subtitle" id="legal-subtitle"></p>
+    </div>
+    <div class="legal-toc" id="legal-toc"></div>
+    <div class="legal-body" id="legal-body"></div>
+    <div class="legal-nav-links" id="legal-nav-links"></div>
+  </div>
+</div>
+
 <!-- Contact Strip -->
 <div class="contact-strip" id="contact-strip">
   <h2>Still need help?</h2>
@@ -415,6 +502,12 @@
 
 <footer>
   <p>© 2026 CoSign · <a href="mailto:support@cosign.com.gh">support@cosign.com.gh</a></p>
+  <p style="margin-top:8px; display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+    <a onclick="showLegal('terms')" style="cursor:pointer;">Terms of Service</a>
+    <a onclick="showLegal('privacy')" style="cursor:pointer;">Privacy Policy</a>
+    <a onclick="showLegal('cookies')" style="cursor:pointer;">Cookie Policy</a>
+    <a onclick="showLegal('seller-terms')" style="cursor:pointer;">Seller Terms</a>
+  </p>
 </footer>
 
 <script>
@@ -1087,7 +1180,9 @@ function showHome() {
   document.getElementById('home-view').style.display = 'block';
   document.getElementById('category-view').style.display = 'none';
   document.getElementById('article-view').style.display = 'none';
+  document.getElementById('legal-view').style.display = 'none';
   document.getElementById('contact-strip').style.display = 'block';
+  history.pushState(null, '', window.location.pathname);
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -1154,8 +1249,630 @@ document.addEventListener('click', function(e) {
   if (!e.target.closest('.search-wrap')) searchResults.classList.remove('show');
 });
 
-// ── INIT ─────────────────────────────────────────────────────────────────────
-renderHome();
+// ── LEGAL PAGES ──────────────────────────────────────────────────────────────
+const LEGAL_PAGES = {
+  'terms': {
+    title: 'Terms of Service',
+    subtitle: 'Please read these terms carefully before using CoSign. By creating an account or making a purchase, you agree to be bound by these terms.',
+    effective: 'Effective 23 May 2026',
+    toc: [
+      'Acceptance of Terms',
+      'Eligibility',
+      'Account Registration',
+      'The CoSign Platform',
+      'Buyer Terms',
+      'Seller Terms',
+      'Escrow & Payments',
+      'Shipping & Delivery',
+      'Returns & Refunds',
+      'Disputes',
+      'Prohibited Items & Conduct',
+      'Intellectual Property',
+      'Privacy',
+      'Disclaimers & Limitation of Liability',
+      'Termination',
+      'Governing Law',
+      'Changes to Terms',
+      'Contact',
+    ],
+    body: `
+      <h2 id="s1">1. Acceptance of Terms</h2>
+      <p>These Terms of Service ("Terms") govern your access to and use of CoSign, a mobile marketplace application operated by CoSign ("we", "us", or "our"). By downloading the app, creating an account, or completing a transaction, you agree to these Terms in full.</p>
+      <p>If you do not agree to these Terms, do not use CoSign.</p>
+
+      <h2 id="s2">2. Eligibility</h2>
+      <p>You must be at least <strong>18 years of age</strong> to create an account on CoSign. By registering, you confirm that you are 18 or older and have the legal capacity to enter into binding contracts under Ghanaian law.</p>
+      <p>CoSign is currently available to users in <strong>Ghana</strong>. Access from outside Ghana is not officially supported and may be restricted.</p>
+
+      <h2 id="s3">3. Account Registration</h2>
+      <p>To use CoSign you must register with a valid email address and create a secure password. You are responsible for:</p>
+      <ul>
+        <li>Keeping your login credentials confidential</li>
+        <li>All activity that occurs under your account</li>
+        <li>Notifying us immediately of any unauthorised access at <a href="mailto:support@cosign.com.gh">support@cosign.com.gh</a></li>
+      </ul>
+      <p>You may not create more than one personal account. We reserve the right to suspend or terminate duplicate or fraudulent accounts.</p>
+      <p>You must provide accurate, current, and complete information during registration and keep your profile up to date.</p>
+
+      <h2 id="s4">4. The CoSign Platform</h2>
+      <p>CoSign is a marketplace that connects buyers and sellers of goods in Ghana. We do not manufacture, own, inspect, or guarantee any product listed on the platform. Sellers are independent third parties responsible for the accuracy of their listings and the quality of goods they sell.</p>
+      <p>CoSign provides:</p>
+      <ul>
+        <li>A marketplace listing and discovery platform</li>
+        <li>Escrow-protected payment processing via Paystack</li>
+        <li>A CoSign Wallet for fast checkout</li>
+        <li>In-app buyer–seller messaging</li>
+        <li>Buyer protection and dispute resolution services</li>
+        <li>Seller identity verification (KYC)</li>
+      </ul>
+
+      <h2 id="s5">5. Buyer Terms</h2>
+      <h3>5.1 Placing Orders</h3>
+      <p>When you place an order on CoSign, you enter into a binding contract of sale with the seller. Your payment is held in escrow and is not released to the seller until you confirm delivery or the 7-day auto-release window expires.</p>
+      <h3>5.2 Cancellations</h3>
+      <p>You may cancel an order within <strong>30 minutes</strong> of placing it for a full refund, provided the seller has not yet confirmed the order. After this window, cancellation is at the seller's discretion.</p>
+      <h3>5.3 Confirming Delivery</h3>
+      <p>Once you receive your item, you must confirm delivery in the app. If you do not confirm within <strong>7 days</strong> of the seller marking the order as dispatched, escrow funds are automatically released to the seller. It is your responsibility to inspect items promptly and raise any issues before confirming.</p>
+      <h3>5.4 Buyer Tiers</h3>
+      <p>CoSign operates a buyer tier system (New → Regular → Loyal → VIP) based on confirmed order history. Tiers may unlock benefits such as priority support and exclusive offers.</p>
+
+      <h2 id="s6">6. Seller Terms</h2>
+      <h3>6.1 Seller Eligibility</h3>
+      <p>To sell on CoSign you must complete our KYC (Know Your Customer) verification process, which requires submission of a valid Ghana national ID and a selfie. Business sellers may also be required to provide business registration documents.</p>
+      <h3>6.2 Listings</h3>
+      <p>Sellers are solely responsible for the accuracy, legality, and quality of their listings. Listings must:</p>
+      <ul>
+        <li>Accurately describe the product, condition (new or used), and any variants</li>
+        <li>Use original photos of the actual item being sold</li>
+        <li>Price goods in Ghana Cedis (GHS)</li>
+        <li>Not include prohibited items (see Section 11)</li>
+      </ul>
+      <h3>6.3 Order Fulfilment</h3>
+      <p>Once a buyer places an order, you must:</p>
+      <ul>
+        <li>Confirm the order within <strong>24 hours</strong></li>
+        <li>Ship the item within the agreed shipping window</li>
+        <li>Provide accurate tracking information where available</li>
+      </ul>
+      <p>Failure to meet these deadlines may result in automatic order cancellation, SLA penalties, and negative impact on your seller score.</p>
+      <h3>6.4 Seller Plans & Commission</h3>
+      <p>CoSign charges a commission on each completed sale. Commission rates by plan:</p>
+      <ul>
+        <li><strong>Free plan</strong> — 12% commission per sale, up to 5 active listings</li>
+        <li><strong>Growth plan</strong> (GHS 140/month) — 8% commission, up to 100 listings</li>
+        <li><strong>Pro plan</strong> (GHS 420/month) — 5% commission, unlimited listings</li>
+        <li><strong>Elite plan</strong> (by application) — 3% commission, unlimited listings, custom features</li>
+      </ul>
+      <p>Commission is deducted from escrow earnings before funds are credited to your seller wallet. No commission is charged on cancelled or fully refunded orders.</p>
+      <h3>6.5 Payouts</h3>
+      <p>Earnings are credited to your CoSign Seller Wallet upon buyer delivery confirmation. You may withdraw to a registered Mobile Money account at any time. The minimum withdrawal amount is <strong>GHS 1.00</strong>. Withdrawals are processed within 1–2 business days.</p>
+
+      <h2 id="s7">7. Escrow & Payments</h2>
+      <p>All payments on CoSign are processed through <strong>Paystack</strong>, a licensed payment processor. Available methods include Mobile Money (MTN MoMo, Vodafone Cash, AirtelTigo Money), debit/credit cards, bank transfer, and CoSign Wallet.</p>
+      <div class="legal-callout green">
+        <strong>Escrow protection:</strong> Payment is held by CoSign and is never released to the seller until (a) the buyer confirms delivery, or (b) the 7-day auto-release window expires after dispatch. This protects buyers from non-delivery and protects sellers from payment fraud.
+      </div>
+      <p>CoSign does not store your card details or MoMo PIN. All payment data is handled securely by Paystack and encrypted in transit.</p>
+      <p>You must never make or accept payment outside the CoSign app. Any off-platform payment is made entirely at your own risk and is not protected by our escrow system or buyer protection policy.</p>
+
+      <h2 id="s8">8. Shipping & Delivery</h2>
+      <p>Sellers set their own shipping rates and timelines. CoSign supports two delivery methods:</p>
+      <ul>
+        <li><strong>Door-to-door</strong> — item delivered to buyer's registered address</li>
+        <li><strong>Bus/Transport station</strong> — item sent to the nearest transport station for collection</li>
+      </ul>
+      <p>CoSign does not operate its own courier service. Sellers use third-party courier services and are responsible for ensuring safe dispatch. CoSign is not liable for loss, damage, or delays caused by third-party couriers.</p>
+
+      <h2 id="s9">9. Returns & Refunds</h2>
+      <p>Buyers may request a return within <strong>7 days</strong> of delivery confirmation where:</p>
+      <ul>
+        <li>The item received is significantly different from the listing description</li>
+        <li>The item arrived damaged or defective</li>
+        <li>The wrong item was sent</li>
+      </ul>
+      <p>Returns are not accepted for change of mind after delivery confirmation, items marked "Final Sale", or damage caused by the buyer. See our full Returns Policy in the Help Centre for the step-by-step process.</p>
+      <p>Refunds are processed to the buyer's CoSign Wallet (instant) or original payment method (1–3 business days) once a return is approved.</p>
+
+      <h2 id="s10">10. Disputes</h2>
+      <p>If a buyer and seller cannot resolve an issue directly, either party may escalate to CoSign's dispute resolution team. CoSign will review the dispute within <strong>72 hours</strong> and may request evidence from both parties.</p>
+      <p>CoSign's dispute decision is final and binding. Escrow funds remain frozen during an active dispute. CoSign reserves the right to issue full or partial refunds, release funds to the seller, or split funds at its discretion based on the evidence provided.</p>
+
+      <h2 id="s11">11. Prohibited Items & Conduct</h2>
+      <p>The following items may not be listed or sold on CoSign:</p>
+      <ul>
+        <li>Counterfeit, fake, or replica goods</li>
+        <li>Stolen goods or goods of unclear provenance</li>
+        <li>Illegal drugs, controlled substances, or paraphernalia</li>
+        <li>Weapons, firearms, ammunition, or explosives</li>
+        <li>Pornographic or sexually explicit material</li>
+        <li>Endangered species or wildlife products</li>
+        <li>Items subject to export restrictions or sanctions</li>
+        <li>Any item whose sale is prohibited under Ghanaian law</li>
+      </ul>
+      <p>The following conduct is prohibited on CoSign:</p>
+      <ul>
+        <li>Requesting or making payment outside the CoSign platform</li>
+        <li>Creating fake reviews or manipulating ratings</li>
+        <li>Impersonating another user or entity</li>
+        <li>Using automated tools to scrape or interact with the platform</li>
+        <li>Harassment, threats, or abusive behaviour toward other users</li>
+        <li>Listing items with the intent to defraud</li>
+      </ul>
+      <p>Violations may result in immediate account suspension or permanent ban without refund of any subscription fees.</p>
+
+      <h2 id="s12">12. Intellectual Property</h2>
+      <p>CoSign and all related logos, trademarks, design elements, and software are the property of CoSign and its licensors. You may not reproduce, distribute, or create derivative works without our written permission.</p>
+      <p>By uploading product images or other content to CoSign, you grant us a non-exclusive, royalty-free, worldwide licence to display and use that content for the purpose of operating the platform.</p>
+
+      <h2 id="s13">13. Privacy</h2>
+      <p>Your use of CoSign is also governed by our <a onclick="showLegal('privacy')">Privacy Policy</a>, which explains how we collect, use, and protect your personal data.</p>
+
+      <h2 id="s14">14. Disclaimers & Limitation of Liability</h2>
+      <p>CoSign is provided "as is" without warranties of any kind, express or implied. We do not warrant that the platform will be uninterrupted, error-free, or free of viruses.</p>
+      <p>To the fullest extent permitted by Ghanaian law, CoSign's liability to you for any claim arising from your use of the platform shall not exceed the value of the transaction giving rise to the claim, or GHS 500, whichever is lower.</p>
+      <p>CoSign is not liable for: (a) indirect or consequential losses; (b) loss of profits or revenue; (c) acts or omissions of third-party sellers, couriers, or payment processors; or (d) force majeure events.</p>
+
+      <h2 id="s15">15. Termination</h2>
+      <p>We may suspend or terminate your account at any time if you violate these Terms, engage in fraudulent activity, or if we are required to do so by law. You may delete your account at any time from Settings. Account deletion is subject to a <strong>30-day grace period</strong> during which your data is retained before permanent erasure.</p>
+      <p>Outstanding order obligations must be fulfilled before account closure. Funds in your wallet at the time of closure will be refunded to your registered Mobile Money account.</p>
+
+      <h2 id="s16">16. Governing Law</h2>
+      <p>These Terms are governed by the laws of the <strong>Republic of Ghana</strong>. Any disputes arising from these Terms shall be subject to the exclusive jurisdiction of the courts of Ghana.</p>
+
+      <h2 id="s17">17. Changes to Terms</h2>
+      <p>We may update these Terms from time to time. We will notify you of material changes through the app or by email. Continued use of CoSign after changes take effect constitutes your acceptance of the revised Terms.</p>
+
+      <h2 id="s18">18. Contact</h2>
+      <p>If you have questions about these Terms, contact us at:</p>
+      <p><strong>CoSign Support</strong><br/>Email: <a href="mailto:support@cosign.com.gh">support@cosign.com.gh</a><br/>Help Centre: <a href="https://help.sevora.tech">help.sevora.tech</a></p>
+    `
+  },
+
+  'privacy': {
+    title: 'Privacy Policy',
+    subtitle: 'This Privacy Policy explains how CoSign collects, uses, shares, and protects your personal information when you use our marketplace app.',
+    effective: 'Effective 23 May 2026',
+    toc: [
+      'Who We Are',
+      'Information We Collect',
+      'How We Use Your Information',
+      'How We Share Your Information',
+      'Data Storage & Security',
+      'Your Rights',
+      'Data Retention',
+      'Children\'s Privacy',
+      'Third-Party Services',
+      'Changes to This Policy',
+      'Contact Us',
+    ],
+    body: `
+      <h2 id="p1">1. Who We Are</h2>
+      <p>CoSign is a mobile marketplace application operated in Ghana. We act as the data controller for the personal information we collect from users of our platform. Our contact for data-related queries is <a href="mailto:support@cosign.com.gh">support@cosign.com.gh</a>.</p>
+
+      <h2 id="p2">2. Information We Collect</h2>
+      <h3>2.1 Information you provide directly</h3>
+      <ul>
+        <li><strong>Account registration:</strong> Email address, password, username, display name</li>
+        <li><strong>Profile:</strong> Profile photo, gender, date of birth, language preference, currency preference</li>
+        <li><strong>Addresses:</strong> Delivery addresses including region, district, street address, and Ghana Post GPS digital address</li>
+        <li><strong>Payment information:</strong> Mobile Money number and provider (we do not store card numbers — these are handled by Paystack)</li>
+        <li><strong>KYC documents (sellers only):</strong> Ghana national ID, selfie with ID, business registration documents where applicable</li>
+        <li><strong>Communications:</strong> Messages sent through CoSign's in-app chat system</li>
+        <li><strong>Reviews and ratings:</strong> Text, photos, and ratings you submit about products or sellers</li>
+      </ul>
+      <h3>2.2 Information collected automatically</h3>
+      <ul>
+        <li><strong>Usage data:</strong> Products viewed, searches made, cart activity, orders placed</li>
+        <li><strong>Device information:</strong> Device type, operating system version, app version</li>
+        <li><strong>Transaction data:</strong> Order history, payment status, escrow records</li>
+        <li><strong>Session data:</strong> Login timestamps, session duration</li>
+      </ul>
+      <div class="legal-callout">
+        <strong>We do not use advertising trackers, third-party analytics SDKs, or sell your data to advertisers.</strong> CoSign products are ad-free.
+      </div>
+
+      <h2 id="p3">3. How We Use Your Information</h2>
+      <p>We use your information to:</p>
+      <ul>
+        <li>Create and manage your CoSign account</li>
+        <li>Process orders, payments, and escrow transactions</li>
+        <li>Verify seller identity (KYC) as required by law and platform policy</li>
+        <li>Enable buyer–seller communication through in-app chat</li>
+        <li>Provide personalised product recommendations (if you have opted in)</li>
+        <li>Detect and prevent fraud, abuse, and prohibited activity</li>
+        <li>Comply with legal obligations under Ghanaian law</li>
+        <li>Send transactional notifications (order updates, payment confirmations) — you cannot opt out of these as they are essential to service operation</li>
+        <li>Send marketing communications where you have given consent — you can opt out at any time from Settings</li>
+        <li>Calculate buyer tier status and seller reputation scores</li>
+        <li>Resolve disputes between buyers and sellers</li>
+        <li>Improve and develop the CoSign platform</li>
+      </ul>
+      <p><strong>Legal basis for processing:</strong> We process your personal data on the basis of (a) contract performance — to fulfil our obligations to you as a user of CoSign; (b) legitimate interests — fraud prevention and platform safety; (c) legal obligation — KYC and financial compliance; and (d) consent — marketing communications and personalised recommendations.</p>
+
+      <h2 id="p4">4. How We Share Your Information</h2>
+      <p>We do not sell your personal data. We share data only in the following circumstances:</p>
+      <ul>
+        <li><strong>With sellers:</strong> When you place an order, your name, delivery address, and phone number are shared with the seller to fulfil your order.</li>
+        <li><strong>With buyers:</strong> Your seller store name, product descriptions, ratings, and response time are visible to buyers. Your personal email and phone are not disclosed.</li>
+        <li><strong>With Paystack:</strong> Payment processing data is shared with Paystack to process your transactions. Paystack's privacy policy applies to data they receive.</li>
+        <li><strong>With Cloudinary:</strong> Product images, profile photos, and KYC documents are stored on Cloudinary's secure cloud storage.</li>
+        <li><strong>With law enforcement:</strong> We will disclose information if required by a valid court order, subpoena, or legal process under Ghanaian law.</li>
+        <li><strong>In business transfers:</strong> If CoSign is acquired or merges with another company, your data may be transferred as part of that transaction. We will notify you in advance.</li>
+      </ul>
+
+      <h2 id="p5">5. Data Storage & Security</h2>
+      <p>Your data is stored on secure servers. We implement industry-standard security measures including:</p>
+      <ul>
+        <li>Encryption of data in transit (HTTPS/TLS) and at rest</li>
+        <li>Access controls limiting staff access to personal data on a need-to-know basis</li>
+        <li>Regular security reviews</li>
+        <li>Secure password hashing</li>
+      </ul>
+      <p>No system is 100% secure. In the event of a data breach affecting your personal information, we will notify you as required by applicable law.</p>
+
+      <h2 id="p6">6. Your Rights</h2>
+      <p>You have the following rights over your personal data:</p>
+      <ul>
+        <li><strong>Access:</strong> Request a copy of the personal data we hold about you</li>
+        <li><strong>Correction:</strong> Update inaccurate or incomplete information from your profile settings</li>
+        <li><strong>Deletion (Right to Erasure):</strong> Request deletion of your account and personal data from Settings → Account → Delete Account. Your data is permanently erased after a 30-day grace period.</li>
+        <li><strong>Data portability:</strong> Request an export of your personal data in a machine-readable format</li>
+        <li><strong>Withdraw consent:</strong> Opt out of marketing emails and personalised recommendations at any time from Settings → Privacy</li>
+        <li><strong>Restriction:</strong> Request we restrict processing of your data in certain circumstances</li>
+      </ul>
+      <p>To exercise any of these rights, contact us at <a href="mailto:support@cosign.com.gh">support@cosign.com.gh</a>. We will respond within 30 days.</p>
+
+      <h2 id="p7">7. Data Retention</h2>
+      <p>We retain your personal data for as long as your account is active or as necessary to provide services. Specifically:</p>
+      <ul>
+        <li><strong>Account data:</strong> Retained until account deletion is completed</li>
+        <li><strong>Order and transaction records:</strong> Retained for 7 years for financial compliance purposes</li>
+        <li><strong>KYC documents:</strong> Retained for 5 years after the seller relationship ends</li>
+        <li><strong>Chat messages:</strong> Retained for 12 months after the conversation is archived</li>
+        <li><strong>Deleted account data:</strong> Permanently erased 30 days after deletion request, except where longer retention is required by law</li>
+      </ul>
+
+      <h2 id="p8">8. Children's Privacy</h2>
+      <p>CoSign is not intended for users under the age of 18. We do not knowingly collect personal data from children. If we become aware that a child under 18 has registered, we will delete their account and data promptly.</p>
+
+      <h2 id="p9">9. Third-Party Services</h2>
+      <p>CoSign integrates with the following third-party services. Their privacy policies govern their data handling:</p>
+      <ul>
+        <li><strong>Paystack</strong> — Payment processing (<a href="https://paystack.com/gh/privacy" target="_blank">paystack.com/gh/privacy</a>)</li>
+        <li><strong>Cloudinary</strong> — Media storage and delivery</li>
+        <li><strong>Firebase Cloud Messaging</strong> — Push notifications</li>
+      </ul>
+      <p>Links to external websites from within CoSign are provided for your convenience. We are not responsible for the privacy practices of external sites.</p>
+
+      <h2 id="p10">10. Changes to This Policy</h2>
+      <p>We may update this Privacy Policy from time to time. We will notify you of significant changes via in-app notification or email. The effective date at the top of this page will be updated accordingly. Continued use of CoSign after changes indicates your acceptance.</p>
+
+      <h2 id="p11">11. Contact Us</h2>
+      <p>For any privacy-related questions or to exercise your rights:</p>
+      <p><strong>CoSign Data Privacy</strong><br/>Email: <a href="mailto:support@cosign.com.gh">support@cosign.com.gh</a><br/>Subject line: "Privacy Request – [your name]"</p>
+    `
+  },
+
+  'cookies': {
+    title: 'Cookie Policy',
+    subtitle: 'This Cookie Policy explains how CoSign uses cookies and similar technologies in our mobile app and website.',
+    effective: 'Effective 23 May 2026',
+    toc: [
+      'What Are Cookies?',
+      'CoSign is a Mobile App',
+      'Technologies We Use',
+      'Essential Functionality',
+      'Analytics',
+      'Third-Party Technologies',
+      'Your Choices',
+      'Contact',
+    ],
+    body: `
+      <h2 id="c1">1. What Are Cookies?</h2>
+      <p>Cookies are small text files stored on your device by websites and apps. They are used to remember preferences, maintain sessions, and collect usage data. Similar technologies include local storage, session storage, and device identifiers.</p>
+
+      <h2 id="c2">2. CoSign is a Mobile App</h2>
+      <p>CoSign is primarily delivered as a mobile application (React Native). Traditional browser cookies are not used in the mobile app. Instead, we use equivalent mobile storage technologies to provide the same functionality.</p>
+      <div class="legal-callout green">
+        <strong>CoSign does not use advertising cookies or third-party tracking pixels.</strong> We do not partner with advertisers or share your browsing data for targeting purposes.
+      </div>
+
+      <h2 id="c3">3. Technologies We Use</h2>
+      <p>CoSign uses the following storage technologies to operate the platform:</p>
+
+      <h3>3.1 Authentication Tokens</h3>
+      <p><strong>Purpose:</strong> To keep you securely logged in between sessions.<br/>
+      <strong>What we store:</strong> An encrypted JWT (JSON Web Token) access token and refresh token.<br/>
+      <strong>Storage:</strong> Stored securely in the device's secure storage (React Native Keychain / AsyncStorage).<br/>
+      <strong>Duration:</strong> Refresh tokens expire after 30 days of inactivity.<br/>
+      <strong>Can you disable?</strong> No — these are strictly necessary for authentication. Disabling them would log you out permanently.</p>
+
+      <h3>3.2 User Preferences</h3>
+      <p><strong>Purpose:</strong> To remember your app settings such as dark/light mode theme.<br/>
+      <strong>What we store:</strong> Theme preference, notification settings, and language preference.<br/>
+      <strong>Storage:</strong> Device local storage (AsyncStorage).<br/>
+      <strong>Duration:</strong> Persists until you clear app data or uninstall.<br/>
+      <strong>Can you disable?</strong> Not individually — clearing app data will reset these preferences.</p>
+
+      <h3>3.3 Cart & Session Data</h3>
+      <p><strong>Purpose:</strong> To persist your shopping cart between app sessions.<br/>
+      <strong>What we store:</strong> Cart contents (product IDs, quantities, seller IDs).<br/>
+      <strong>Storage:</strong> Server-side (linked to your account) and local cache.<br/>
+      <strong>Duration:</strong> Guest carts expire after 7 days. Authenticated carts persist until checkout or manual clearance.<br/>
+      <strong>Can you disable?</strong> No — this is necessary for shopping functionality.</p>
+
+      <h3>3.4 WebView Sessions</h3>
+      <p><strong>Purpose:</strong> To maintain sessions when you use the in-app browser for payment (Paystack checkout), the Help Centre, or legal pages.<br/>
+      <strong>What we store:</strong> Standard session cookies from the third-party web page loaded in the WebView.<br/>
+      <strong>Duration:</strong> Session-only — cleared when the WebView is closed.<br/>
+      <strong>Can you disable?</strong> Not without disabling in-app payment functionality.</p>
+
+      <h2 id="c4">4. Essential Functionality</h2>
+      <p>All technologies described above are <strong>strictly necessary</strong> for CoSign to function. Without them, core features such as login, checkout, and cart management would not work. These cannot be opted out of without ceasing to use the app.</p>
+
+      <h2 id="c5">5. Analytics</h2>
+      <p>CoSign uses its own internal analytics system to understand how the platform is used — for example, which products are viewed most often, conversion rates, and feature usage. This data is:</p>
+      <ul>
+        <li>Processed on CoSign's own servers</li>
+        <li>Not shared with third-party analytics providers</li>
+        <li>Used only to improve CoSign's features and performance</li>
+        <li>Associated with your account for the purpose of personalised recommendations (if you have opted in to personalised recommendations in Privacy Settings)</li>
+      </ul>
+      <p>You can opt out of personalised recommendations at any time from <strong>Settings → Privacy → Personalised Recommendations</strong>.</p>
+
+      <h2 id="c6">6. Third-Party Technologies</h2>
+      <p>The following third-party services used by CoSign may also store data on your device:</p>
+      <ul>
+        <li><strong>Paystack</strong> — When the Paystack WebView loads during checkout, Paystack may store cookies on your device subject to their own cookie policy. These are used for fraud prevention and payment session management.</li>
+        <li><strong>Firebase Cloud Messaging (FCM)</strong> — Used to deliver push notifications. FCM stores a device registration token on your device which we use to route notifications to you. This is essential for push notifications to work.</li>
+        <li><strong>Cloudinary</strong> — Product and profile images are served from Cloudinary's CDN. Cloudinary may set performance-related cookies when images are loaded in the web-based help centre.</li>
+      </ul>
+
+      <h2 id="c7">7. Your Choices</h2>
+      <p>You can manage storage and cookie preferences in the following ways:</p>
+      <ul>
+        <li><strong>Clear app data</strong> — On Android, go to Settings → Apps → CoSign → Clear Data. This will log you out and reset all local preferences.</li>
+        <li><strong>Opt out of personalised recommendations</strong> — Settings → Privacy → Personalised Recommendations</li>
+        <li><strong>Opt out of marketing emails</strong> — Settings → Privacy → Marketing Communications</li>
+        <li><strong>Uninstall the app</strong> — Uninstalling CoSign removes all locally stored data.</li>
+      </ul>
+      <p>Please note that opting out of essential storage technologies is not possible without ceasing to use the app, as they are required for core functionality.</p>
+
+      <h2 id="c8">8. Contact</h2>
+      <p>For questions about this Cookie Policy:</p>
+      <p><strong>CoSign Support</strong><br/>Email: <a href="mailto:support@cosign.com.gh">support@cosign.com.gh</a></p>
+    `
+  },
+
+  'seller-terms': {
+    title: 'Seller Terms & Conditions',
+    subtitle: 'These Seller Terms apply to all sellers on CoSign in addition to the general Terms of Service. By activating a seller account, you agree to these terms.',
+    effective: 'Effective 23 May 2026',
+    toc: [
+      'Seller Eligibility & Onboarding',
+      'KYC & Identity Verification',
+      'Listings & Product Standards',
+      'Order Management',
+      'Shipping & Delivery Standards',
+      'Commission & Fees',
+      'Seller Wallet & Payouts',
+      'Returns & Refunds',
+      'Seller Performance & SLA',
+      'Disputes & Buyer Protection',
+      'Prohibited Items & Conduct',
+      'Seller Account Suspension & Termination',
+      'Intellectual Property',
+      'Tax Obligations',
+      'Changes to Seller Terms',
+      'Contact',
+    ],
+    body: `
+      <h2 id="st1">1. Seller Eligibility & Onboarding</h2>
+      <p>To become a seller on CoSign, you must:</p>
+      <ul>
+        <li>Be at least 18 years of age</li>
+        <li>Be a resident of or registered business in Ghana</li>
+        <li>Have a valid Ghana national ID for identity verification</li>
+        <li>Have a valid Mobile Money account for receiving payouts</li>
+        <li>Agree to these Seller Terms in addition to CoSign's general Terms of Service</li>
+      </ul>
+      <p>CoSign reserves the right to reject seller applications at its sole discretion without providing reasons.</p>
+
+      <h2 id="st2">2. KYC & Identity Verification</h2>
+      <p>All sellers must complete Know Your Customer (KYC) verification before their first product goes live. The verification process requires:</p>
+      <ul>
+        <li>Clear photos of the front and back of a valid Ghana national ID card</li>
+        <li>A selfie clearly showing you holding your ID</li>
+        <li>Business registration documents (optional for sole traders; required for registered businesses)</li>
+      </ul>
+      <p>KYC documents are reviewed by CoSign staff within 1–3 business days. Submitting false, forged, or altered documents is grounds for immediate permanent ban and may result in criminal referral.</p>
+      <p>Your KYC documents are stored securely and retained in accordance with our Privacy Policy and applicable Ghanaian financial regulations.</p>
+
+      <h2 id="st3">3. Listings & Product Standards</h2>
+      <h3>3.1 Accuracy</h3>
+      <p>All product listings must be accurate, honest, and complete. You must not:</p>
+      <ul>
+        <li>Misrepresent the condition (new vs. used), size, colour, or any material attribute of a product</li>
+        <li>Use photos that do not show the actual item being sold</li>
+        <li>Copy another seller's photos or descriptions without permission</li>
+        <li>List items you do not own or do not have the right to sell</li>
+        <li>Set a price different from what the buyer will actually pay (hidden fees are prohibited)</li>
+      </ul>
+      <h3>3.2 Pricing</h3>
+      <p>All prices must be set in <strong>Ghana Cedis (GHS)</strong>. Prices must include all taxes and charges payable by the buyer except shipping, which is displayed separately. You may offer discounts and flash sales in accordance with CoSign's pricing rules.</p>
+      <h3>3.3 Product Limits</h3>
+      <p>Active product listings are limited based on your seller plan:</p>
+      <ul>
+        <li><strong>Free plan:</strong> 5 active listings</li>
+        <li><strong>Growth plan:</strong> 100 active listings</li>
+        <li><strong>Pro plan:</strong> Unlimited</li>
+        <li><strong>Elite plan:</strong> Unlimited</li>
+      </ul>
+      <h3>3.4 Moderation</h3>
+      <p>CoSign reviews all new listings before they go live. We reserve the right to remove any listing that violates these terms, without notice and without refund of any listing fees paid.</p>
+
+      <h2 id="st4">4. Order Management</h2>
+      <p>When a buyer places an order, you are legally obligated to fulfil it as listed. You must:</p>
+      <ul>
+        <li><strong>Confirm the order within 24 hours</strong> of payment being placed in escrow</li>
+        <li>Prepare and package the item in good condition</li>
+        <li>Dispatch the item within the shipping window you have set for your store</li>
+        <li>Update the order status in the CoSign app as you progress</li>
+        <li>Provide accurate tracking information where available</li>
+      </ul>
+      <p>If you cannot fulfil an order, you must cancel it promptly with a valid reason. Repeated cancellations will negatively affect your seller score and may result in account review.</p>
+
+      <h2 id="st5">5. Shipping & Delivery Standards</h2>
+      <p>You are responsible for choosing a reliable courier service and ensuring goods are dispatched safely. CoSign is not a courier and does not assume liability for shipping delays, loss, or damage in transit.</p>
+      <p>Supported delivery methods:</p>
+      <ul>
+        <li><strong>Door-to-door</strong> — you must ensure the item is delivered to the buyer's registered address</li>
+        <li><strong>Bus/Transport station</strong> — you must notify the buyer of the transport station, vehicle number, and any collection details</li>
+      </ul>
+      <p>You must not charge shipping fees higher than your actual shipping cost. Overcharging on shipping fees is grounds for a listing violation.</p>
+
+      <h2 id="st6">6. Commission & Fees</h2>
+      <p>CoSign deducts commission from each completed sale. Commission is calculated on the <strong>product subtotal only</strong> (not including shipping). Commission is charged at the rate corresponding to your active seller plan at the time of the sale:</p>
+      <ul>
+        <li><strong>Free plan:</strong> 12% per sale</li>
+        <li><strong>Growth plan:</strong> 8% per sale</li>
+        <li><strong>Pro plan:</strong> 5% per sale</li>
+        <li><strong>Elite plan:</strong> 3% per sale (custom rates available)</li>
+      </ul>
+      <p>Commission is deducted automatically from escrow before funds are credited to your Seller Wallet. You will always see a breakdown of gross sale, commission deducted, and net earnings in your Finance screen.</p>
+      <p><strong>No commission is charged on:</strong></p>
+      <ul>
+        <li>Cancelled orders</li>
+        <li>Orders that are fully refunded before delivery confirmation</li>
+      </ul>
+      <p>Subscription fees for Growth, Pro, and Elite plans are non-refundable. Plan downgrades take effect at the end of the current billing period.</p>
+
+      <h2 id="st7">7. Seller Wallet & Payouts</h2>
+      <p>Your earnings from completed sales are credited to your CoSign Seller Wallet after the buyer confirms delivery (or after the 7-day auto-release). You may withdraw funds to your registered Mobile Money account at any time.</p>
+      <p><strong>Withdrawal terms:</strong></p>
+      <ul>
+        <li>Minimum withdrawal: <strong>GHS 1.00</strong></li>
+        <li>Processing time: <strong>1–2 business days</strong></li>
+        <li>You must have a valid, active Mobile Money account in your name</li>
+        <li>Withdrawals are subject to applicable Mobile Money transfer fees charged by your network provider</li>
+      </ul>
+      <p>CoSign reserves the right to place a hold on your wallet if we detect suspicious activity, an active dispute, or a chargeback risk. We will notify you and resolve the hold as quickly as possible.</p>
+
+      <h2 id="st8">8. Returns & Refunds</h2>
+      <p>Buyers may request a return within 7 days of delivery confirmation for legitimate reasons (item not as described, damaged, or wrong item sent). You must respond to return requests within <strong>48 hours</strong>.</p>
+      <p>If a return is approved:</p>
+      <ul>
+        <li>The buyer returns the item at their cost (unless the return is due to your error, in which case you must cover return shipping)</li>
+        <li>Once you confirm receipt of the returned item, the buyer's refund is processed</li>
+        <li>The commission CoSign charged on the original sale will be refunded to you proportionally</li>
+      </ul>
+      <p>You may not reject a return request where the item was clearly not as described, damaged on arrival, or the wrong item. Rejecting valid returns will impact your seller score and may result in CoSign overriding the decision in the buyer's favour.</p>
+
+      <h2 id="st9">9. Seller Performance & SLA</h2>
+      <p>CoSign monitors seller performance through the following metrics:</p>
+      <ul>
+        <li><strong>Order confirmation rate:</strong> Orders confirmed within 24 hours</li>
+        <li><strong>On-time dispatch rate:</strong> Orders shipped within your stated shipping window</li>
+        <li><strong>Cancellation rate:</strong> Orders cancelled by you</li>
+        <li><strong>Response rate:</strong> Messages replied to within 24 hours</li>
+        <li><strong>Return rate:</strong> Legitimate returns as a proportion of orders</li>
+        <li><strong>Average star rating:</strong> Buyer review scores</li>
+      </ul>
+      <p>Sellers who consistently fall below CoSign's performance thresholds may receive warnings, temporary suspension of new order capabilities, or permanent account closure. You can view your performance metrics in the Seller Dashboard at any time.</p>
+
+      <h2 id="st10">10. Disputes & Buyer Protection</h2>
+      <p>CoSign's dispute resolution team may intervene in buyer–seller disputes. You agree to:</p>
+      <ul>
+        <li>Respond to dispute notifications within 48 hours</li>
+        <li>Provide evidence (photos, dispatch records, tracking) when requested</li>
+        <li>Accept CoSign's final dispute determination as binding</li>
+      </ul>
+      <p>CoSign's buyer protection programme allows buyers to raise claims for non-delivery, significantly not as described, or item damaged in transit. Valid buyer protection claims are reviewed within 72 hours. If a claim is upheld, escrow funds will be returned to the buyer.</p>
+      <div class="legal-callout amber">
+        <strong>Never request or accept payment outside CoSign.</strong> Off-platform payment is not protected by our escrow system and exposes you to chargeback risk. Sellers found soliciting off-platform payments will be permanently banned.
+      </div>
+
+      <h2 id="st11">11. Prohibited Items & Conduct</h2>
+      <p>All prohibited items listed in the general Terms of Service apply to sellers. Additionally, sellers must not:</p>
+      <ul>
+        <li>List items without owning them or having the right to sell them</li>
+        <li>Artificially inflate sales figures or review counts</li>
+        <li>Operate multiple seller accounts without prior written approval from CoSign</li>
+        <li>Use the platform to launder money or conduct any unlawful financial activity</li>
+        <li>Coordinate with other sellers to fix prices or divide market segments</li>
+      </ul>
+
+      <h2 id="st12">12. Seller Account Suspension & Termination</h2>
+      <p>CoSign may suspend or terminate your seller account in the following circumstances:</p>
+      <ul>
+        <li>Breach of these Seller Terms or general Terms of Service</li>
+        <li>Sustained poor performance below CoSign's minimum thresholds</li>
+        <li>Confirmed fraudulent activity, counterfeit goods, or identity fraud</li>
+        <li>Failure to complete KYC verification when required</li>
+        <li>Legal or regulatory requirement</li>
+      </ul>
+      <p>Upon termination, any outstanding escrow funds for completed orders will be paid out after the standard release period. Funds held against active disputes will be managed through CoSign's dispute process.</p>
+      <p>Subscription fees paid in advance are non-refundable upon termination for cause.</p>
+
+      <h2 id="st13">13. Intellectual Property</h2>
+      <p>You retain ownership of the photos and content you upload to CoSign. By listing on CoSign, you grant us a non-exclusive, royalty-free licence to display your content on the platform for the purpose of facilitating sales. We do not use your product photos for advertising or sell them to third parties.</p>
+
+      <h2 id="st14">14. Tax Obligations</h2>
+      <p>You are solely responsible for determining and fulfilling your tax obligations as a seller in Ghana, including VAT, income tax, and any other applicable levies on your sales proceeds. CoSign does not withhold taxes on your behalf unless required by law. We recommend consulting a tax professional regarding your obligations.</p>
+
+      <h2 id="st15">15. Changes to Seller Terms</h2>
+      <p>We may update these Seller Terms from time to time. We will notify sellers of material changes via in-app notification or email at least 14 days before they take effect. Continued selling on CoSign after the effective date constitutes acceptance of the revised terms.</p>
+
+      <h2 id="st16">16. Contact</h2>
+      <p>For seller-specific queries:</p>
+      <p><strong>CoSign Seller Support</strong><br/>Email: <a href="mailto:support@cosign.com.gh">support@cosign.com.gh</a><br/>Subject: "Seller Support – [your store name]"</p>
+    `
+  },
+};
+
+function showLegal(pageId) {
+  const page = LEGAL_PAGES[pageId];
+  if (!page) return;
+
+  document.getElementById('home-view').style.display = 'none';
+  document.getElementById('category-view').style.display = 'none';
+  document.getElementById('article-view').style.display = 'none';
+  document.getElementById('legal-view').style.display = 'block';
+  document.getElementById('contact-strip').style.display = 'none';
+
+  document.getElementById('legal-breadcrumb-title').textContent = page.title;
+  document.getElementById('legal-effective').textContent = page.effective;
+  document.getElementById('legal-title').textContent = page.title;
+  document.getElementById('legal-subtitle').textContent = page.subtitle;
+  document.getElementById('legal-body').innerHTML = page.body;
+
+  // Build TOC
+  const tocHtml = `
+    <div class="legal-toc-title">Contents</div>
+    <ol>${page.toc.map((item, i) => `<li><a href="#" onclick="return false;">${item}</a></li>`).join('')}</ol>
+  `;
+  document.getElementById('legal-toc').innerHTML = tocHtml;
+
+  // Build cross-links
+  const otherPages = Object.entries(LEGAL_PAGES).filter(([id]) => id !== pageId);
+  const navHtml = otherPages.map(([id, p]) =>
+    `<span class="legal-nav-link" onclick="showLegal('${id}')">${p.title}</span>`
+  ).join('');
+  document.getElementById('legal-nav-links').innerHTML = '<span style="font-size:13px;font-weight:700;color:var(--ink-3);align-self:center;">Also read: </span>' + navHtml;
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  // Update URL hash for direct linking
+  history.pushState(null, '', '#' + pageId);
+}
+
+// Handle URL hash on load (for direct links like help.sevora.tech#terms)
+window.addEventListener('load', function() {
+  const hash = window.location.hash.replace('#', '');
+  if (LEGAL_PAGES[hash]) showLegal(hash);
+});
+
+
 </script>
 </body>
 </html>
