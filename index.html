@@ -997,9 +997,9 @@ const ARTICLES = {
     body: `
       <p>CoSign takes a small commission on every completed sale to cover platform costs and buyer protection.</p>
       <h2>Commission rates</h2>
-      <p>Commission is calculated as a percentage of the order subtotal (excluding shipping). The exact rate depends on your seller plan.</p>
+      <p>Commission is calculated as a percentage of the order subtotal (excluding shipping).</p>
       <ul>
-        <li><strong>Standard plan</strong> — 12% commission per sale</li>
+        <li><strong>Commission rate:</strong> 12% per sale</li>
       </ul>
       <h2>No listing fees</h2>
       <p>You pay nothing to list products. Commission is only charged when a sale is completed and confirmed by the buyer.</p>
@@ -1335,15 +1335,8 @@ const LEGAL_PAGES = {
         <li>Provide accurate tracking information where available</li>
       </ul>
       <p>Failure to meet these deadlines may result in automatic order cancellation, SLA penalties, and negative impact on your seller score.</p>
-      <h3>6.4 Seller Plans & Commission</h3>
-      <p>CoSign charges a commission on each completed sale. Commission rates by plan:</p>
-      <ul>
-        <li><strong>Free plan</strong> — 12% commission per sale, up to 5 active listings</li>
-        <li><strong>Growth plan</strong> (GHS 140/month) — 8% commission, up to 100 listings</li>
-        <li><strong>Pro plan</strong> (GHS 420/month) — 5% commission, unlimited listings</li>
-        <li><strong>Elite plan</strong> (by application) — 3% commission, unlimited listings, custom features</li>
-      </ul>
-      <p>Commission is deducted from escrow earnings before funds are credited to your seller wallet. No commission is charged on cancelled or fully refunded orders.</p>
+      <h3>6.4 Commission</h3>
+      <p>CoSign charges a <strong>12% commission</strong> on each completed sale. Commission is deducted from escrow earnings before funds are credited to your seller wallet. No commission is charged on cancelled or fully refunded orders.</p>
       <h3>6.5 Payouts</h3>
       <p>Earnings are credited to your CoSign Seller Wallet upon buyer delivery confirmation. You may withdraw to a registered Mobile Money account at any time. The minimum withdrawal amount is <strong>GHS 1.00</strong>. Withdrawals are processed within 1–2 business days.</p>
 
@@ -1398,7 +1391,7 @@ const LEGAL_PAGES = {
         <li>Harassment, threats, or abusive behaviour toward other users</li>
         <li>Listing items with the intent to defraud</li>
       </ul>
-      <p>Violations may result in immediate account suspension or permanent ban without refund of any subscription fees.</p>
+      <p>Violations may result in immediate account suspension or permanent ban.</p>
 
       <h2 id="s12">12. Intellectual Property</h2>
       <p>CoSign and all related logos, trademarks, design elements, and software are the property of CoSign and its licensors. You may not reproduce, distribute, or create derivative works without our written permission.</p>
@@ -1700,15 +1693,7 @@ const LEGAL_PAGES = {
       </ul>
       <h3>3.2 Pricing</h3>
       <p>All prices must be set in <strong>Ghana Cedis (GHS)</strong>. Prices must include all taxes and charges payable by the buyer except shipping, which is displayed separately. You may offer discounts and flash sales in accordance with CoSign's pricing rules.</p>
-      <h3>3.3 Product Limits</h3>
-      <p>Active product listings are limited based on your seller plan:</p>
-      <ul>
-        <li><strong>Free plan:</strong> 5 active listings</li>
-        <li><strong>Growth plan:</strong> 100 active listings</li>
-        <li><strong>Pro plan:</strong> Unlimited</li>
-        <li><strong>Elite plan:</strong> Unlimited</li>
-      </ul>
-      <h3>3.4 Moderation</h3>
+      <h3>3.3 Moderation</h3>
       <p>CoSign reviews all new listings before they go live. We reserve the right to remove any listing that violates these terms, without notice and without refund of any listing fees paid.</p>
 
       <h2 id="st4">4. Order Management</h2>
@@ -1732,20 +1717,13 @@ const LEGAL_PAGES = {
       <p>You must not charge shipping fees higher than your actual shipping cost. Overcharging on shipping fees is grounds for a listing violation.</p>
 
       <h2 id="st6">6. Commission & Fees</h2>
-      <p>CoSign deducts commission from each completed sale. Commission is calculated on the <strong>product subtotal only</strong> (not including shipping). Commission is charged at the rate corresponding to your active seller plan at the time of the sale:</p>
-      <ul>
-        <li><strong>Free plan:</strong> 12% per sale</li>
-        <li><strong>Growth plan:</strong> 8% per sale</li>
-        <li><strong>Pro plan:</strong> 5% per sale</li>
-        <li><strong>Elite plan:</strong> 3% per sale (custom rates available)</li>
-      </ul>
+      <p>CoSign deducts a <strong>12% commission</strong> on each completed sale. Commission is calculated on the <strong>product subtotal only</strong> (not including shipping).</p>
       <p>Commission is deducted automatically from escrow before funds are credited to your Seller Wallet. You will always see a breakdown of gross sale, commission deducted, and net earnings in your Finance screen.</p>
       <p><strong>No commission is charged on:</strong></p>
       <ul>
         <li>Cancelled orders</li>
         <li>Orders that are fully refunded before delivery confirmation</li>
       </ul>
-      <p>Subscription fees for Growth, Pro, and Elite plans are non-refundable. Plan downgrades take effect at the end of the current billing period.</p>
 
       <h2 id="st7">7. Seller Wallet & Payouts</h2>
       <p>Your earnings from completed sales are credited to your CoSign Seller Wallet after the buyer confirms delivery (or after the 7-day auto-release). You may withdraw funds to your registered Mobile Money account at any time.</p>
@@ -1868,6 +1846,7 @@ function showLegal(pageId) {
 
 // Handle URL hash on load (for direct links like help.sevora.tech#terms)
 window.addEventListener('load', function() {
+  renderHome();
   const hash = window.location.hash.replace('#', '');
   if (LEGAL_PAGES[hash]) showLegal(hash);
 });
