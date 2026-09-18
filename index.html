@@ -465,7 +465,7 @@
     <div class="article-header">
       <div class="article-cat-pill" id="article-cat-pill"></div>
       <h1 class="article-title" id="article-title"></h1>
-      <div class="article-meta">CoSign Help Centre · Last updated May 2026</div>
+      <div class="article-meta">CoSign Help Centre · Last updated September 2026</div>
     </div>
     <div class="article-body" id="article-body"></div>
   </div>
@@ -606,13 +606,13 @@ const ARTICLES = {
     title: 'How to create a CoSign account',
     body: `
       <p>Creating a CoSign account takes less than 2 minutes. Here's how:</p>
-      <div class="step"><div class="step-num">1</div><div class="step-content"><strong>Download the CoSign app</strong>Available on Android. Search "CoSign" in the Play Store.</div></div>
+      <div class="step"><div class="step-num">1</div><div class="step-content"><strong>Open the CoSign app</strong>On your device.</div></div>
       <div class="step"><div class="step-num">2</div><div class="step-content"><strong>Tap "Create Account"</strong>On the welcome screen, tap Sign Up.</div></div>
-      <div class="step"><div class="step-num">3</div><div class="step-content"><strong>Enter your email and create a password</strong>Use a valid email address you have access to.</div></div>
-      <div class="step"><div class="step-num">4</div><div class="step-content"><strong>Verify your email</strong>Check your inbox for a verification code from CoSign and enter it in the app.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-content"><strong>Enter your email and create a password</strong>Use a valid email address you have access to. Your password needs at least 8 characters.</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-content"><strong>Verify your email</strong>Check your inbox for a 6-digit verification code from CoSign and enter it in the app.</div></div>
       <div class="step"><div class="step-num">5</div><div class="step-content"><strong>Complete your profile</strong>Add a display name and you're ready to start shopping.</div></div>
       <div class="callout">
-        <strong>Tip:</strong> You can also sign in with Google for even faster setup.
+        <strong>Tip:</strong> You can also sign in with Google or Apple for even faster setup.
       </div>
     `
   },
@@ -624,7 +624,7 @@ const ARTICLES = {
       <h2>Buyer mode</h2>
       <p>The default mode when you create an account. In buyer mode you can browse products, add to cart, checkout, track orders, and manage returns.</p>
       <h2>Seller mode</h2>
-      <p>If you want to sell on CoSign, you need to apply to become a seller. Once approved, you can switch to seller mode from the Account tab to manage your store, products, and orders.</p>
+      <p>If you want to sell on CoSign, switch to seller mode from the Account tab any time to set up your store. You'll need to complete identity verification (KYC) before you can start listing products.</p>
       <div class="callout green">
         <strong>One account, both modes.</strong> You don't need separate accounts to buy and sell on CoSign.
       </div>
@@ -659,7 +659,7 @@ const ARTICLES = {
       <div class="step"><div class="step-num">2</div><div class="step-content"><strong>Add to cart</strong>Tap "Add to Cart" on the product page. Choose your size or variant if applicable.</div></div>
       <div class="step"><div class="step-num">3</div><div class="step-content"><strong>Go to checkout</strong>Tap the cart icon and review your items, then tap "Checkout".</div></div>
       <div class="step"><div class="step-num">4</div><div class="step-content"><strong>Choose your delivery address</strong>Select a saved address or add a new one.</div></div>
-      <div class="step"><div class="step-num">5</div><div class="step-content"><strong>Select shipping method</strong>Choose between door-to-door delivery or bus station pickup.</div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-content"><strong>Select a delivery method</strong>Choose bus/transport station, door-to-door delivery, or buyer pickup — whichever the seller offers for your region. Cost is a flat rate for your region (not based on weight), and may be free if your order qualifies.</div></div>
       <div class="step"><div class="step-num">6</div><div class="step-content"><strong>Choose payment method</strong>Pay with your CoSign Wallet, MoMo, or card via Paystack.</div></div>
       <div class="step"><div class="step-num">7</div><div class="step-content"><strong>Confirm your order</strong>Review the total and tap "Place Order". Your payment goes into escrow immediately.</div></div>
       <div class="callout green">
@@ -676,13 +676,13 @@ const ARTICLES = {
       <ul>
         <li><strong>Confirmed</strong> — Your order has been placed and payment is in escrow. Waiting for the seller to confirm.</li>
         <li><strong>Processing</strong> — Seller has confirmed and is preparing your item.</li>
-        <li><strong>Shipped</strong> — Your item is on the way. You may receive a tracking number.</li>
-        <li><strong>Delivered</strong> — Seller has marked the order as delivered.</li>
+        <li><strong>Shipped</strong> — Your item is on the way. The seller adds dispatch details — which transport company and station, a rider's name and phone, or which pickup point — depending on the delivery method.</li>
+        <li><strong>Delivered</strong> — Seller has marked the order as delivered (or you've confirmed collection, for pickup orders).</li>
         <li><strong>Completed</strong> — You've confirmed receipt and the seller has been paid.</li>
       </ul>
       <h2>How to track</h2>
       <div class="step"><div class="step-num">1</div><div class="step-content"><strong>Go to the Orders tab</strong>Tap Orders in the bottom navigation.</div></div>
-      <div class="step"><div class="step-num">2</div><div class="step-content"><strong>Tap your order</strong>Find the order and tap it to see full details and current status.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-content"><strong>Tap your order</strong>Find the order to see its dispatch details and current status — CoSign doesn't offer live GPS tracking, since deliveries move through local transport companies and riders rather than a single trackable courier.</div></div>
       <div class="callout amber">
         <strong>Remember to confirm delivery!</strong> Once your item arrives, tap "Confirm Delivery" so the seller gets paid and your order is completed.
       </div>
@@ -699,6 +699,9 @@ const ARTICLES = {
         <li><strong>After seller confirms but before shipping</strong> — You can still request cancellation; the seller must approve it.</li>
         <li><strong>After shipping</strong> — You cannot cancel. You would need to initiate a return instead.</li>
       </ul>
+      <div class="callout green">
+        <strong>You're protected either way.</strong> If a seller doesn't confirm your order within 24 hours, it's automatically cancelled and you're refunded — you don't need to do anything.
+      </div>
       <h2>How to cancel</h2>
       <div class="step"><div class="step-num">1</div><div class="step-content"><strong>Go to Orders tab</strong>Find the order you want to cancel.</div></div>
       <div class="step"><div class="step-num">2</div><div class="step-content"><strong>Tap "Cancel Order"</strong>This option appears on the order detail screen if cancellation is available.</div></div>
@@ -718,10 +721,10 @@ const ARTICLES = {
         <li><strong>Pending</strong> — Order created, awaiting payment confirmation.</li>
         <li><strong>Confirmed</strong> — Payment received and in escrow. Seller notified.</li>
         <li><strong>Processing</strong> — Seller has accepted and is preparing your item.</li>
-        <li><strong>Shipped</strong> — Item dispatched. Tracking number may be added by seller.</li>
+        <li><strong>Shipped</strong> — Item dispatched. Seller adds dispatch details (transport company and station, rider details, or pickup point) so you know where to expect it.</li>
         <li><strong>Delivered</strong> — Seller marked as delivered. Awaiting your confirmation.</li>
         <li><strong>Completed</strong> — You confirmed receipt. Seller paid. Order closed.</li>
-        <li><strong>Cancelled</strong> — Order cancelled by buyer or seller. Refund issued.</li>
+        <li><strong>Cancelled</strong> — Order cancelled by buyer or seller (or automatically, if the seller doesn't confirm within 24 hours). Refund issued.</li>
         <li><strong>Disputed</strong> — A dispute has been raised and is under review.</li>
       </ul>
       <div class="callout amber">
@@ -831,7 +834,7 @@ const ARTICLES = {
       <h2>Key deadlines</h2>
       <ul>
         <li><strong>Seller confirmation</strong> — Seller must confirm your order within 24 hours of payment.</li>
-        <li><strong>Seller shipment</strong> — Seller must ship within the agreed shipping window (typically 2–3 days).</li>
+        <li><strong>Seller shipment</strong> — Seller must ship within their shipping window, typically 48 hours (this can vary slightly by seller).</li>
         <li><strong>Buyer confirmation</strong> — You have 7 days after the seller marks "Delivered" to confirm receipt.</li>
         <li><strong>Auto-completion</strong> — If you don't confirm within 7 days, the order auto-completes and funds are released to the seller.</li>
       </ul>
@@ -869,7 +872,7 @@ const ARTICLES = {
       <h2>How to raise a dispute</h2>
       <div class="step"><div class="step-num">1</div><div class="step-content"><strong>Go to the order</strong>Find the order in your Orders tab.</div></div>
       <div class="step"><div class="step-num">2</div><div class="step-content"><strong>Tap "Raise Dispute"</strong>Available on the order detail screen before you confirm delivery.</div></div>
-      <div class="step"><div class="step-num">3</div><div class="step-content"><strong>Describe the issue</strong>Provide details and photos if possible. The CoSign team will review within 2 business days.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-content"><strong>Describe the issue</strong>Provide details and photos if possible. The seller has 48 hours to respond before CoSign steps in to review.</div></div>
       <div class="callout green">
         <strong>Your funds are safe during a dispute.</strong> Escrow funds are held and neither party can access them while a dispute is active.
       </div>
@@ -881,7 +884,7 @@ const ARTICLES = {
     cat: 'returns',
     title: 'CoSign return policy',
     body: `
-      <p>CoSign supports returns within <strong>7 days of delivery confirmation</strong>, subject to eligibility.</p>
+      <p>CoSign supports returns within <strong>7 days of delivery confirmation</strong> by default (some sellers may set a different window on their store), subject to eligibility.</p>
       <h2>Eligible for return</h2>
       <ul>
         <li>Item is significantly different from the description</li>
@@ -952,10 +955,11 @@ const ARTICLES = {
       <p>Selling on CoSign is free to start. Here's how to set up your store:</p>
       <div class="step"><div class="step-num">1</div><div class="step-content"><strong>Go to Account tab</strong>Tap "Become a Seller" or "Switch to Seller Mode".</div></div>
       <div class="step"><div class="step-num">2</div><div class="step-content"><strong>Complete seller onboarding</strong>Enter your store name, description, and contact details.</div></div>
-      <div class="step"><div class="step-num">3</div><div class="step-content"><strong>Verify your identity</strong>Upload a valid Ghana ID for KYC verification.</div></div>
-      <div class="step"><div class="step-num">4</div><div class="step-content"><strong>List your first product</strong>Once verified, you can start listing products immediately.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-content"><strong>Verify your identity</strong>Upload an ID for KYC verification — a Ghana Card, passport, driver's licence, or voter ID (businesses can also submit a business registration certificate or TIN).</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-content"><strong>Set up your payout details and shipping</strong>Add how you want to get paid and which delivery methods you'll offer.</div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-content"><strong>List your first product</strong>Once verified, you can start listing products.</div></div>
       <div class="callout green">
-        <strong>Free to start.</strong> CoSign takes a small commission on sales. You only pay when you earn.
+        <strong>Free to start.</strong> CoSign takes a commission on sales. You only pay when you earn.
       </div>
     `
   },
@@ -969,7 +973,7 @@ const ARTICLES = {
       <div class="step"><div class="step-num">3</div><div class="step-content"><strong>Add photos</strong>Upload at least one clear photo. Multiple angles recommended.</div></div>
       <div class="step"><div class="step-num">4</div><div class="step-content"><strong>Fill in details</strong>Enter product name, category, condition (new/used), description, and price.</div></div>
       <div class="step"><div class="step-num">5</div><div class="step-content"><strong>Set stock and variants</strong>Add variants (size, colour) and set your stock quantity.</div></div>
-      <div class="step"><div class="step-num">6</div><div class="step-content"><strong>Submit for review</strong>Your product will go live after a quick moderation check (usually under 1 hour).</div></div>
+      <div class="step"><div class="step-num">6</div><div class="step-content"><strong>Publish</strong>Your product goes live right away. CoSign's moderation system continues to screen listings afterward and may flag or remove ones that break our policies.</div></div>
     `
   },
   'seller-payouts': {
@@ -984,10 +988,10 @@ const ARTICLES = {
       </ul>
       <h2>How to withdraw</h2>
       <div class="step"><div class="step-num">1</div><div class="step-content"><strong>Go to Seller Finance</strong>Switch to Seller mode → tap Finance.</div></div>
-      <div class="step"><div class="step-num">2</div><div class="step-content"><strong>Tap "Withdraw"</strong>Enter the amount and your MoMo number.</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-content"><strong>Tap "Withdraw"</strong>Enter the amount and choose Mobile Money or Bank Account as your payout destination.</div></div>
       <div class="step"><div class="step-num">3</div><div class="step-content"><strong>Confirm</strong>Your withdrawal will be processed within 1–2 business days.</div></div>
       <div class="callout amber">
-        <strong>Minimum withdrawal:</strong> GHS 10. Ensure your MoMo number is registered and active.
+        <strong>Minimum withdrawal:</strong> GHS 1, up to GHS 50,000 per withdrawal. If you've just added or changed your payout details, there's a 24-hour security hold before you can withdraw to them.
       </div>
     `
   },
@@ -996,11 +1000,8 @@ const ARTICLES = {
     title: 'Commission and fees for sellers',
     body: `
       <p>CoSign takes a small commission on every completed sale to cover platform costs and buyer protection.</p>
-      <h2>Commission rates</h2>
-      <p>Commission is calculated as a percentage of the order subtotal (excluding shipping).</p>
-      <ul>
-        <li><strong>Commission rate:</strong> 12% per sale</li>
-      </ul>
+      <h2>Commission rate</h2>
+      <p>Commission is currently a flat <strong>12%</strong>, calculated on the full order amount — subtotal plus shipping.</p>
       <h2>No listing fees</h2>
       <p>You pay nothing to list products. Commission is only charged when a sale is completed and confirmed by the buyer.</p>
       <div class="callout green">
@@ -1110,7 +1111,7 @@ const ARTICLES = {
       <h2>How to report</h2>
       <div class="step"><div class="step-num">1</div><div class="step-content"><strong>Go to the seller's store page</strong>Tap the seller's name on any product or order.</div></div>
       <div class="step"><div class="step-num">2</div><div class="step-content"><strong>Tap the ⋯ menu</strong>Find the "Report Seller" option.</div></div>
-      <div class="step"><div class="step-num">3</div><div class="step-content"><strong>Select a reason and submit</strong>Our moderation team reviews all reports within 24 hours.</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-content"><strong>Select a reason and submit</strong>Our moderation team reviews reports as quickly as possible, prioritising the most serious ones first.</div></div>
     `
   },
   'suspicious-activity': {
@@ -1310,7 +1311,7 @@ const LEGAL_PAGES = {
       <h3>5.1 Placing Orders</h3>
       <p>When you place an order on CoSign, you enter into a binding contract of sale with the seller. Your payment is held in escrow and is not released to the seller until you confirm delivery or the 7-day auto-release window expires.</p>
       <h3>5.2 Cancellations</h3>
-      <p>You may cancel an order within <strong>30 minutes</strong> of placing it for a full refund, provided the seller has not yet confirmed the order. After this window, cancellation is at the seller's discretion.</p>
+      <p>You may cancel an order for a full refund at any time before the seller confirms it. If the seller does not confirm within <strong>24 hours</strong> of payment, the order is automatically cancelled and refunded. Once the seller has confirmed but not yet shipped, cancellation requires the seller's approval; once the item has shipped, you'll need to initiate a return instead.</p>
       <h3>5.3 Confirming Delivery</h3>
       <p>Once you receive your item, you must confirm delivery in the app. If you do not confirm within <strong>7 days</strong> of the seller marking the order as dispatched, escrow funds are automatically released to the seller. It is your responsibility to inspect items promptly and raise any issues before confirming.</p>
       <h3>5.4 Buyer Tiers</h3>
@@ -1318,7 +1319,7 @@ const LEGAL_PAGES = {
 
       <h2 id="s6">6. Seller Terms</h2>
       <h3>6.1 Seller Eligibility</h3>
-      <p>To sell on CoSign you must complete our KYC (Know Your Customer) verification process, which requires submission of a valid Ghana national ID and a selfie. Business sellers may also be required to provide business registration documents.</p>
+      <p>To sell on CoSign you must complete our KYC (Know Your Customer) verification process, which requires submission of a valid ID (Ghana Card, passport, driver's licence, or voter ID) and a selfie with that ID. Business sellers may also be required to provide business registration documents or a Tax Identification Number (TIN).</p>
       <h3>6.2 Listings</h3>
       <p>Sellers are solely responsible for the accuracy, legality, and quality of their listings. Listings must:</p>
       <ul>
@@ -1331,14 +1332,14 @@ const LEGAL_PAGES = {
       <p>Once a buyer places an order, you must:</p>
       <ul>
         <li>Confirm the order within <strong>24 hours</strong></li>
-        <li>Ship the item within the agreed shipping window</li>
-        <li>Provide accurate tracking information where available</li>
+        <li>Ship the item within the shipping window you've set for your store</li>
+        <li>Provide dispatch details for the buyer (transport company and station, rider details, or pickup point, depending on delivery method)</li>
       </ul>
       <p>Failure to meet these deadlines may result in automatic order cancellation, SLA penalties, and negative impact on your seller score.</p>
       <h3>6.4 Commission</h3>
-      <p>CoSign charges a <strong>12% commission</strong> on each completed sale. Commission is deducted from escrow earnings before funds are credited to your seller wallet. No commission is charged on cancelled or fully refunded orders.</p>
+      <p>CoSign charges a <strong>12% commission</strong> on each completed sale, calculated on the full order amount (subtotal plus shipping). Commission is deducted from escrow earnings before funds are credited to your seller wallet. No commission is charged on cancelled or fully refunded orders.</p>
       <h3>6.5 Payouts</h3>
-      <p>Earnings are credited to your CoSign Seller Wallet upon buyer delivery confirmation. You may withdraw to a registered Mobile Money account at any time. The minimum withdrawal amount is <strong>GHS 1.00</strong>. Withdrawals are processed within 1–2 business days.</p>
+      <p>Earnings are credited to your CoSign Seller Wallet upon buyer delivery confirmation. You may withdraw to a registered Mobile Money account or bank account at any time. The minimum withdrawal amount is <strong>GHS 1.00</strong> (maximum GHS 50,000 per withdrawal). Withdrawals are processed within 1–2 business days.</p>
 
       <h2 id="s7">7. Escrow & Payments</h2>
       <p>All payments on CoSign are processed through <strong>Paystack</strong>, a licensed payment processor. Available methods include Mobile Money (MTN MoMo, Vodafone Cash, AirtelTigo Money), debit/credit cards, bank transfer, and CoSign Wallet.</p>
@@ -1349,10 +1350,11 @@ const LEGAL_PAGES = {
       <p>You must never make or accept payment outside the CoSign app. Any off-platform payment is made entirely at your own risk and is not protected by our escrow system or buyer protection policy.</p>
 
       <h2 id="s8">8. Shipping & Delivery</h2>
-      <p>Sellers set their own shipping rates and timelines. CoSign supports two delivery methods:</p>
+      <p>Sellers set their own shipping rates and timelines, calculated as a flat rate by region rather than by weight. CoSign supports three delivery methods:</p>
       <ul>
         <li><strong>Door-to-door</strong> — item delivered to buyer's registered address</li>
-        <li><strong>Bus/Transport station</strong> — item sent to the nearest transport station for collection</li>
+        <li><strong>Bus/Transport station</strong> — item sent to a transport station for collection</li>
+        <li><strong>Buyer pickup</strong> — buyer collects from the seller's location or a designated pickup point</li>
       </ul>
       <p>CoSign does not operate its own courier service. Sellers use third-party courier services and are responsible for ensuring safe dispatch. CoSign is not liable for loss, damage, or delays caused by third-party couriers.</p>
 
@@ -1367,7 +1369,7 @@ const LEGAL_PAGES = {
       <p>Refunds are processed to the buyer's CoSign Wallet (instant) or original payment method (1–3 business days) once a return is approved.</p>
 
       <h2 id="s10">10. Disputes</h2>
-      <p>If a buyer and seller cannot resolve an issue directly, either party may escalate to CoSign's dispute resolution team. CoSign will review the dispute within <strong>72 hours</strong> and may request evidence from both parties.</p>
+      <p>If a buyer and seller cannot resolve an issue directly, either party may escalate to CoSign's dispute resolution team. The other party has <strong>48 hours</strong> to respond with evidence before CoSign's team reviews and decides the case, prioritising more urgent cases first.</p>
       <p>CoSign's dispute decision is final and binding. Escrow funds remain frozen during an active dispute. CoSign reserves the right to issue full or partial refunds, release funds to the seller, or split funds at its discretion based on the evidence provided.</p>
 
       <h2 id="s11">11. Prohibited Items & Conduct</h2>
@@ -1449,7 +1451,7 @@ const LEGAL_PAGES = {
         <li><strong>Profile:</strong> Profile photo, gender, date of birth, language preference, currency preference</li>
         <li><strong>Addresses:</strong> Delivery addresses including region, district, street address, and Ghana Post GPS digital address</li>
         <li><strong>Payment information:</strong> Mobile Money number and provider (we do not store card numbers — these are handled by Paystack)</li>
-        <li><strong>KYC documents (sellers only):</strong> Ghana national ID, selfie with ID, business registration documents where applicable</li>
+        <li><strong>KYC documents (sellers only):</strong> Ghana Card, passport, driver's licence, or voter ID; selfie with ID; business registration documents or TIN where applicable</li>
         <li><strong>Communications:</strong> Messages sent through CoSign's in-app chat system</li>
         <li><strong>Reviews and ratings:</strong> Text, photos, and ratings you submit about products or sellers</li>
       </ul>
@@ -1510,7 +1512,7 @@ const LEGAL_PAGES = {
         <li><strong>Correction:</strong> Update inaccurate or incomplete information from your profile settings</li>
         <li><strong>Deletion (Right to Erasure):</strong> Request deletion of your account and personal data from Settings → Account → Delete Account. Your data is permanently erased after a 30-day grace period.</li>
         <li><strong>Data portability:</strong> Request an export of your personal data in a machine-readable format</li>
-        <li><strong>Withdraw consent:</strong> Opt out of marketing emails and personalised recommendations at any time from Settings → Privacy</li>
+        <li><strong>Withdraw consent:</strong> Opt out of personalised recommendations from Settings → Privacy, and marketing emails from Settings → Data & Privacy</li>
         <li><strong>Restriction:</strong> Request we restrict processing of your data in certain circumstances</li>
       </ul>
       <p>To exercise any of these rights, contact us at <a href="mailto:joincosign@gmail.com">joincosign@gmail.com</a>. We will respond within 30 days.</p>
@@ -1534,6 +1536,7 @@ const LEGAL_PAGES = {
         <li><strong>Paystack</strong> — Payment processing (<a href="https://paystack.com/gh/privacy" target="_blank">paystack.com/gh/privacy</a>)</li>
         <li><strong>Cloudinary</strong> — Media storage and delivery</li>
         <li><strong>Firebase Cloud Messaging</strong> — Push notifications</li>
+        <li><strong>Sentry</strong> — Crash and error reporting to help us find and fix bugs (technical data only, not used for marketing or advertising)</li>
       </ul>
       <p>Links to external websites from within CoSign are provided for your convenience. We are not responsible for the privacy practices of external sites.</p>
 
@@ -1577,7 +1580,7 @@ const LEGAL_PAGES = {
       <p><strong>Purpose:</strong> To keep you securely logged in between sessions.<br/>
       <strong>What we store:</strong> An encrypted JWT (JSON Web Token) access token and refresh token.<br/>
       <strong>Storage:</strong> Stored securely in the device's secure storage (React Native Keychain / AsyncStorage).<br/>
-      <strong>Duration:</strong> Refresh tokens expire after 30 days of inactivity.<br/>
+      <strong>Duration:</strong> Refresh tokens expire after 7 days of inactivity.<br/>
       <strong>Can you disable?</strong> No — these are strictly necessary for authentication. Disabling them would log you out permanently.</p>
 
       <h3>3.2 User Preferences</h3>
@@ -1619,6 +1622,7 @@ const LEGAL_PAGES = {
         <li><strong>Paystack</strong> — When the Paystack WebView loads during checkout, Paystack may store cookies on your device subject to their own cookie policy. These are used for fraud prevention and payment session management.</li>
         <li><strong>Firebase Cloud Messaging (FCM)</strong> — Used to deliver push notifications. FCM stores a device registration token on your device which we use to route notifications to you. This is essential for push notifications to work.</li>
         <li><strong>Cloudinary</strong> — Product and profile images are served from Cloudinary's CDN. Cloudinary may set performance-related cookies when images are loaded in the web-based help centre.</li>
+        <li><strong>Sentry</strong> — Used for crash and error reporting. Sentry may collect device and technical data when the app crashes or encounters an error, to help us diagnose the issue.</li>
       </ul>
 
       <h2 id="c7">7. Your Choices</h2>
@@ -1626,7 +1630,7 @@ const LEGAL_PAGES = {
       <ul>
         <li><strong>Clear app data</strong> — On Android, go to Settings → Apps → CoSign → Clear Data. This will log you out and reset all local preferences.</li>
         <li><strong>Opt out of personalised recommendations</strong> — Settings → Privacy → Personalised Recommendations</li>
-        <li><strong>Opt out of marketing emails</strong> — Settings → Privacy → Marketing Communications</li>
+        <li><strong>Opt out of marketing emails</strong> — Settings → Data & Privacy → Data Consent</li>
         <li><strong>Uninstall the app</strong> — Uninstalling CoSign removes all locally stored data.</li>
       </ul>
       <p>Please note that opting out of essential storage technologies is not possible without ceasing to use the app, as they are required for core functionality.</p>
@@ -1665,8 +1669,8 @@ const LEGAL_PAGES = {
       <ul>
         <li>Be at least 18 years of age</li>
         <li>Be a resident of or registered business in Ghana</li>
-        <li>Have a valid Ghana national ID for identity verification</li>
-        <li>Have a valid Mobile Money account for receiving payouts</li>
+        <li>Have a valid ID for identity verification (Ghana Card, passport, driver's licence, or voter ID)</li>
+        <li>Have a valid Mobile Money account or bank account for receiving payouts</li>
         <li>Agree to these Seller Terms in addition to CoSign's general Terms of Service</li>
       </ul>
       <p>CoSign reserves the right to reject seller applications at its sole discretion without providing reasons.</p>
@@ -1674,9 +1678,9 @@ const LEGAL_PAGES = {
       <h2 id="st2">2. KYC & Identity Verification</h2>
       <p>All sellers must complete Know Your Customer (KYC) verification before their first product goes live. The verification process requires:</p>
       <ul>
-        <li>Clear photos of the front and back of a valid Ghana national ID card</li>
+        <li>Clear photos of the front and back of a valid ID (Ghana Card, passport, driver's licence, or voter ID)</li>
         <li>A selfie clearly showing you holding your ID</li>
-        <li>Business registration documents (optional for sole traders; required for registered businesses)</li>
+        <li>Business registration documents or a Tax Identification Number (optional for sole traders; required for registered businesses)</li>
       </ul>
       <p>KYC documents are reviewed by CoSign staff within 1–3 business days. Submitting false, forged, or altered documents is grounds for immediate permanent ban and may result in criminal referral.</p>
       <p>Your KYC documents are stored securely and retained in accordance with our Privacy Policy and applicable Ghanaian financial regulations.</p>
@@ -1694,7 +1698,7 @@ const LEGAL_PAGES = {
       <h3>3.2 Pricing</h3>
       <p>All prices must be set in <strong>Ghana Cedis (GHS)</strong>. Prices must include all taxes and charges payable by the buyer except shipping, which is displayed separately. You may offer discounts and flash sales in accordance with CoSign's pricing rules.</p>
       <h3>3.3 Moderation</h3>
-      <p>CoSign reviews all new listings before they go live. We reserve the right to remove any listing that violates these terms, without notice and without refund of any listing fees paid.</p>
+      <p>Listings go live immediately once published. CoSign's moderation systems continue to screen listings after publication and may flag, edit, or remove any listing that violates these terms at any time, without notice and without refund of any listing fees paid.</p>
 
       <h2 id="st4">4. Order Management</h2>
       <p>When a buyer places an order, you are legally obligated to fulfil it as listed. You must:</p>
@@ -1703,7 +1707,7 @@ const LEGAL_PAGES = {
         <li>Prepare and package the item in good condition</li>
         <li>Dispatch the item within the shipping window you have set for your store</li>
         <li>Update the order status in the CoSign app as you progress</li>
-        <li>Provide accurate tracking information where available</li>
+        <li>Provide dispatch details for the buyer (transport company and station, rider details, or pickup point, depending on delivery method)</li>
       </ul>
       <p>If you cannot fulfil an order, you must cancel it promptly with a valid reason. Repeated cancellations will negatively affect your seller score and may result in account review.</p>
 
@@ -1713,11 +1717,12 @@ const LEGAL_PAGES = {
       <ul>
         <li><strong>Door-to-door</strong> — you must ensure the item is delivered to the buyer's registered address</li>
         <li><strong>Bus/Transport station</strong> — you must notify the buyer of the transport station, vehicle number, and any collection details</li>
+        <li><strong>Buyer pickup</strong> — you must give the buyer clear pickup instructions and be available at the agreed time</li>
       </ul>
       <p>You must not charge shipping fees higher than your actual shipping cost. Overcharging on shipping fees is grounds for a listing violation.</p>
 
       <h2 id="st6">6. Commission & Fees</h2>
-      <p>CoSign deducts a <strong>12% commission</strong> on each completed sale. Commission is calculated on the <strong>product subtotal only</strong> (not including shipping).</p>
+      <p>CoSign deducts a <strong>12% commission</strong> on each completed sale. Commission is calculated on the <strong>full order amount</strong> (product subtotal plus shipping).</p>
       <p>Commission is deducted automatically from escrow before funds are credited to your Seller Wallet. You will always see a breakdown of gross sale, commission deducted, and net earnings in your Finance screen.</p>
       <p><strong>No commission is charged on:</strong></p>
       <ul>
@@ -1726,13 +1731,14 @@ const LEGAL_PAGES = {
       </ul>
 
       <h2 id="st7">7. Seller Wallet & Payouts</h2>
-      <p>Your earnings from completed sales are credited to your CoSign Seller Wallet after the buyer confirms delivery (or after the 7-day auto-release). You may withdraw funds to your registered Mobile Money account at any time.</p>
+      <p>Your earnings from completed sales are credited to your CoSign Seller Wallet after the buyer confirms delivery (or after the 7-day auto-release). You may withdraw funds to your registered Mobile Money account or bank account at any time.</p>
       <p><strong>Withdrawal terms:</strong></p>
       <ul>
-        <li>Minimum withdrawal: <strong>GHS 1.00</strong></li>
+        <li>Minimum withdrawal: <strong>GHS 1.00</strong> (maximum GHS 50,000 per withdrawal)</li>
         <li>Processing time: <strong>1–2 business days</strong></li>
-        <li>You must have a valid, active Mobile Money account in your name</li>
-        <li>Withdrawals are subject to applicable Mobile Money transfer fees charged by your network provider</li>
+        <li>You must have a valid, active Mobile Money account or bank account in your name</li>
+        <li>If you've just added or changed your payout details, there's a 24-hour security hold before you can withdraw to them</li>
+        <li>Withdrawals are subject to applicable transfer fees charged by your Mobile Money or bank provider</li>
       </ul>
       <p>CoSign reserves the right to place a hold on your wallet if we detect suspicious activity, an active dispute, or a chargeback risk. We will notify you and resolve the hold as quickly as possible.</p>
 
@@ -1762,10 +1768,10 @@ const LEGAL_PAGES = {
       <p>CoSign's dispute resolution team may intervene in buyer–seller disputes. You agree to:</p>
       <ul>
         <li>Respond to dispute notifications within 48 hours</li>
-        <li>Provide evidence (photos, dispatch records, tracking) when requested</li>
+        <li>Provide evidence (photos, dispatch records) when requested</li>
         <li>Accept CoSign's final dispute determination as binding</li>
       </ul>
-      <p>CoSign's buyer protection programme allows buyers to raise claims for non-delivery, significantly not as described, or item damaged in transit. Valid buyer protection claims are reviewed within 72 hours. If a claim is upheld, escrow funds will be returned to the buyer.</p>
+      <p>CoSign's buyer protection programme allows buyers to raise claims for non-delivery, significantly not as described, or item damaged in transit. CoSign reviews valid buyer protection claims as quickly as possible, prioritising more urgent cases first. If a claim is upheld, escrow funds will be returned to the buyer.</p>
       <div class="legal-callout amber">
         <strong>Never request or accept payment outside CoSign.</strong> Off-platform payment is not protected by our escrow system and exposes you to chargeback risk. Sellers found soliciting off-platform payments will be permanently banned.
       </div>
